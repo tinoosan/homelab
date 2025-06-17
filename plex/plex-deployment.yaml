@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: plex
+  name: plex
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      volumes:
+      - name: plex-config
+        configMap:
+          name: plex-configmap
+      containers:
+      - name: plex
+        image: lscr.io/linuxserver/plex:latest
+        env:
+          - name: PUID
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: PUID
+          - name: PGID
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: PGID
+          - name: TZ
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: TZ
+          - name: VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: VERSION
+          - name: PLEX_CLAIM
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: PLEX_CLAIM
+        volumeMounts:
+          - name: plex-volume
+            mountPath: /media
+        ports:
+        - containerPort: 80
+      volumes:
+       - name: plex-volume
+         hostPath:
+          path: /mnt/gdrive/Videos
+          type: Directory

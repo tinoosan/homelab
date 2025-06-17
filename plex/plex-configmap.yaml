@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plex-configmap
+data:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Etc/UTC"
+  VERSION: "docker"
+  PLEX_CLAIM: "claim-xUhRysHkt6v9uEBFsZAG"
+
