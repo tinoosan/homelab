@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  annotations:
+    configmap.revisions: "1"
   name: plex-configmap
   namespace: default
 data:

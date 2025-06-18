@@ -48,7 +48,7 @@ spec:
             mountPath: /media
           - name: dev-dri
             mountPath: /dev/dri
-            readoOnly: true
+            reaidOnly: true
         securityContext:
           privileged: true
         ports:
