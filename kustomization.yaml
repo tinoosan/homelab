@@ -1,0 +1,3 @@
+resources:
+  - plex/plex-configmap.yaml
+  - plex/plex-deployment.yaml

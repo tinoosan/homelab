@@ -14,10 +14,6 @@ spec:
       labels:
         app: plex
     spec:
-      volumes:
-      - name: plex-config
-        configMap:
-          name: plex-configmap
       containers:
       - name: plex
         image: lscr.io/linuxserver/plex:latest
