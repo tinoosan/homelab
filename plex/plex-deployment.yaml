@@ -66,5 +66,5 @@ spec:
           type: Directory     
        - name: plex-config
          hostPath:
-          path: /usr/lib/plexmediaserver
+          path: /srv
           type: DirectoryOrCreate
