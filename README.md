@@ -9,15 +9,6 @@ This repo is a personal project designed to document and version-control the inf
 - **Plex Media Server** deployed via Kubernetes
 - Configuration structured as declarative YAML (no `kubectl apply` needed)
 
-## 🔧 Repository Structure
-
-homelab/
-├── plex/ # Plex deployment & config
-├── flux-kustomization.yaml # Flux Kustomization
-├── kustomization.yaml # Root Kustomize manifest
-└── README.md
-
-
 ## 📚 Skills Demonstrated
 
 - Kubernetes manifest authoring
