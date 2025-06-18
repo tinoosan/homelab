@@ -46,6 +46,11 @@ spec:
         volumeMounts:
           - name: plex-volume
             mountPath: /media
+          - name: dev-dri
+            mountPath: /dev/dri
+            readoOnly: true
+        securityContext:
+          privileged: true
         ports:
         - containerPort: 80
       volumes:
@@ -53,3 +58,7 @@ spec:
          hostPath:
           path: /mnt/gdrive/Videos
           type: Directory
+       - name: dri-device
+         hostPath:
+          path: /dev/dri
+          type: Directory     
