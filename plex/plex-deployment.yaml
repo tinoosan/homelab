@@ -54,7 +54,7 @@ spec:
         securityContext:
           privileged: true
         ports:
-        - containerPort: 80
+        - containerPort: 32400
       volumes:
        - name: plex-volume
          hostPath:
