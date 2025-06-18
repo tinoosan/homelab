@@ -32,3 +32,4 @@ This project started as a way to self-host Plex, but grew into a structured envi
 
 MIT — free to reuse, but do your own homework 🙂
 
+
