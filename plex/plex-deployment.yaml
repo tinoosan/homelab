@@ -46,7 +46,7 @@ spec:
         volumeMounts:
           - name: plex-volume
             mountPath: /media
-          - name: dev-dri
+          - name: dri-device
             mountPath: /dev/dri
             reaidOnly: true
         securityContext:
