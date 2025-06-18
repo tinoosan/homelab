@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   annotations:
-    configmap.revisions: "1"
+    configmap.revisions: "2"
   name: plex-configmap
   namespace: default
 data:
@@ -10,5 +10,5 @@ data:
   PGID: "1000"
   TZ: "Etc/UTC"
   VERSION: "docker"
-  PLEX_CLAIM: "claim-xUhRysHkt6v9uEBFsZAG"
+  PLEX_CLAIM: "claim-tMpj8jHzipGeFP4v8dzg"
 
