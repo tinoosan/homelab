@@ -4,7 +4,7 @@ This repo is a personal project designed to document and version-control the inf
 
 ## 🚀 Current Setup
 
-- **Kubernetes cluster** on [Ubuntu server]
+- **Kubernetes cluster** on Ubuntu Live Server
 - **FluxCD GitOps** pipeline to automatically apply config changes
 - **Plex Media Server** deployed via Kubernetes
 - Configuration structured as declarative YAML (no `kubectl apply` needed)
