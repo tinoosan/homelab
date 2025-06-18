@@ -46,6 +46,8 @@ spec:
         volumeMounts:
           - name: plex-volume
             mountPath: /media
+          - name: plex-config
+            mountPath: /config
           - name: dri-device
             mountPath: /dev/dri
             reaidOnly: true
@@ -62,3 +64,7 @@ spec:
          hostPath:
           path: /dev/dri
           type: Directory     
+       - name: plex-config
+         hostPath:
+          path: /usr/lib/plexmediaserver
+          type: Directory
