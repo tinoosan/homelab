@@ -50,7 +50,7 @@ spec:
             mountPath: /config
           - name: dri-device
             mountPath: /dev/dri
-            reaidOnly: true
+            readOnly: true
         securityContext:
           privileged: true
         ports:
