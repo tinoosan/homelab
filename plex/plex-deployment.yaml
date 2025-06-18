@@ -38,11 +38,6 @@ spec:
               configMapKeyRef:
                 name: plex-configmap
                 key: VERSION
-          - name: PLEX_CLAIM
-            valueFrom:
-              configMapKeyRef:
-                name: plex-configmap
-                key: PLEX_CLAIM
         volumeMounts:
           - name: plex-volume
             mountPath: /media

@@ -10,5 +10,4 @@ data:
   PGID: "1000"
   TZ: "Etc/UTC"
   VERSION: "docker"
-  PLEX_CLAIM: "claim-eW1FyBg-bHRP6zE5Qeik"
 
