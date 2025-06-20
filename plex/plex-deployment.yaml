@@ -63,3 +63,36 @@ spec:
          hostPath:
           path: /srv
           type: DirectoryOrCreate
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: default
+spec:
+  selector:
+    app: plex
+  ports:
+    - protocol: TCP
+      port: 32400
+      targetPort: 32400
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  spec:
+  ingressClassName: nginx
+  rules:
+  - host: plex.jamaguchi.net
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: plex
+            port:
+              number: 32400
+
