@@ -61,7 +61,7 @@ spec:
           type: Directory     
        - name: plex-config
          hostPath:
-          path: /srv
+          path: /srv/plex/config
           type: DirectoryOrCreate
 
 ---
