@@ -1,6 +1,7 @@
 resources:
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.3/deploy/static/provider/cloud/deploy.yaml
   - https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
+  - infra/metallb-config.yaml
   - plex/plex-configmap.yaml
   - plex/plex-deployment.yaml
   - it-tools/it-tools-deployment.yaml
