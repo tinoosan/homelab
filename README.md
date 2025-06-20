@@ -1,35 +1,43 @@
 # homelab
 
-This repo is a personal project designed to document and version-control the infrastructure I’m building for my homelab. It serves both as a functional self-hosted stack and a portfolio piece demonstrating my growing knowledge of Kubernetes, GitOps, and modern DevOps practices.
+This repo documents and version-controls my personal homelab infrastructure. It’s both a functional self-hosted environment and a portfolio project to showcase my progress with Kubernetes, GitOps, and modern DevOps practices.
 
 ## 🚀 Current Setup
 
-- **Kubernetes cluster** on Ubuntu Live Server
-- **FluxCD GitOps** pipeline to automatically apply config changes
-- **Plex Media Server** deployed via Kubernetes
-- Configuration structured as declarative YAML (no `kubectl apply` needed)
+* **Kubernetes cluster** running on Ubuntu Live Server (bare metal)
+* **FluxCD GitOps pipeline** to automatically apply and reconcile changes
+* **Plex Media Server** deployed and exposed via NodePort
+* **Declarative infrastructure** written in YAML — no `kubectl apply` needed
+* **Mounted media and config volumes** for persistent Plex data
 
 ## 📚 Skills Demonstrated
 
-- Kubernetes manifest authoring
-- GitOps with FluxCD
-- Deployment strategies
-- Managing media storage in containers
-- Debugging YAML + Kustomize issues
+* Kubernetes workload and volume configuration
+* GitOps workflows with FluxCD
+* Bare-metal Kubernetes service exposure (NodePort)
+* Debugging YAML and Kustomize deployment issues
+* Managing persistent storage in a containerized environment
+
+## 🚫 What's Not Included
+
+* Ingress / reverse proxy: Removed for Plex due to incompatibilities with direct stream and remote access
+* Public DNS routing: Domain configuration is internal-only (via `/etc/hosts`)
 
 ## 🧭 Roadmap
 
-- [ ] Add Prometheus/Grafana for metrics
-- [ ] Include persistent storage (e.g., Longhorn or NFS)
-- [ ] Automate HTTPS with Ingress + cert-manager
-- [ ] Host additional services (e.g., Jellyfin, Nextcloud)
+* [ ] Add Prometheus and Grafana for observability
+* [ ] Implement persistent storage with Longhorn or NFS
+* [ ] Automate TLS certificates for future services (e.g., cert-manager)
+* [ ] Deploy additional apps (Jellyfin, Nextcloud, etc.)
 
 ## 🧠 Motivation
 
-This project started as a way to self-host Plex, but grew into a structured environment where I could practice and demonstrate practical DevOps skills. Everything is managed declaratively and pushed via Git to match real-world operational practices.
+This project began with a simple goal: self-host Plex. It evolved into a structured environment where I could practice infrastructure-as-code, GitOps, and Kubernetes administration on real hardware. Everything is deployed via Flux, giving me practical experience with production-like workflows.
 
 ## 📝 License
 
-MIT — free to reuse, but do your own homework 🙂
+MIT — free to reuse, but understand what you're running 🙂
+
+---
 
 
