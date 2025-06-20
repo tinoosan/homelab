@@ -15,5 +15,5 @@ spec:
           service:
             name: it-tools
             port:
-              number: 80
+              number: 8080
 
