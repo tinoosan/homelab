@@ -28,7 +28,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    app.kubernetes.io/name: it-tools
+    app: it-tools
   ports:
     - protocol: TCP
       port: 80
