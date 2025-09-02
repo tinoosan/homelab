@@ -19,6 +19,3 @@ spec:
     - default
   interfaces:
     - eno1
-  nodeSelectors:
-    - matchLabels:
-        kubernetes.io/hostname: mugiwara
