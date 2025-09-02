@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: torrus
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: torrus
+          imagePullPolicy: Always
+          # (only dev pulls each time; prod will pin digests later)
+          envFrom:
+            - configMapref:
+                name: torrus-config
+            - secretRef:
+                name: torrus-secrets
