@@ -10,3 +10,5 @@ resources:
   - flux-torrus-dev.yaml
   - flux-tools.yaml
 
+patchesStrategicMerge:
+  - infra/ingress-nginx-service-patch.yaml

@@ -14,4 +14,4 @@ spec:
               service:
                 name: torrus
                 port:
-                  number: 80
+                  name: http
