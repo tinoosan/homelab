@@ -17,3 +17,6 @@ metadata:
 spec:
   ipAddressPools:
   - default
+  interfaces:
+  - eno1
+  - wlp1s0
