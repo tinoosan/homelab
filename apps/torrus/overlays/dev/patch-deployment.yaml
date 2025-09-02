@@ -11,7 +11,7 @@ spec:
           imagePullPolicy: Always
           # (only dev pulls each time; prod will pin digests later)
           envFrom:
-            - configMapref:
+            - configMapRef:
                 name: torrus-config
             - secretRef:
                 name: torrus-secrets
