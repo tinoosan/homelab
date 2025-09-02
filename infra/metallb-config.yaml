@@ -16,7 +16,9 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - default
+    - default
   interfaces:
-  - eno1
-  - wlp1s0
+    - eno1
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: mugiwara
