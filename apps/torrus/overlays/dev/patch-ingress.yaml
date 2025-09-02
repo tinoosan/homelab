@@ -4,7 +4,7 @@ metadata:
   name: torrus
 spec:
   rules:
-    - host: torrus.dev.xyz   # your dev host
+    - host: torrus.dev.jamaguchi.xyz   # your dev host
       http:
         paths:
           - path: /
