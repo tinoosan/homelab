@@ -2,13 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: torrus
-  labels: { app: torrus }
+  labels:
+    app: torrus
 spec:
   selector:
-    matchLabels: { app: torrus }
+    matchLabels:
+      app: torrus
   template:
     metadata:
-      labels: { app: torrus }
+      labels:
+        app: torrus
     spec:
       containers:
         - name: torrus
@@ -18,6 +21,13 @@ spec:
             - name: http
               containerPort: 9090
           readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 6
+          livenessProbe:
             httpGet:
               path: /healthz
               port: http
