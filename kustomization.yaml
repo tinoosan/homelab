@@ -7,10 +7,6 @@ resources:
   - infra/metallb-config.yaml
   - plex/plex-configmap.yaml
   - plex/plex-deployment.yaml
-  - apps/it-tools/base/deployment.yaml
-  - apps/it-tools/base/service.yaml
-  - apps/it-tools/base/ingress.yaml
   - flux-torrus-dev.yaml
+  - flux-tools.yaml
 
-patchesStrategicMerge:
-  - infra/ingress-nginx-lbip-patch.yaml
