@@ -8,7 +8,7 @@ resources:
   - plex/plex-configmap.yaml
   - plex/plex-deployment.yaml
   - flux-torrus-dev.yaml
-  - flux-tools.yaml
+  - apps/it-tools/base
 
 patchesStrategicMerge:
   - infra/ingress-nginx-service-patch.yaml
