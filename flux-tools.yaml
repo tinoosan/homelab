@@ -8,6 +8,8 @@ spec:
   path: ./apps/it-tools/base
   prune: true
   wait: true
+  dependsOn:
+    - name: homelab-kustomization
   sourceRef:
     kind: GitRepository
     name: flux-system
