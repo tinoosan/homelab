@@ -41,3 +41,46 @@ MIT — free to reuse, but understand what you're running 🙂
 ---
 
 
+## 🧩 Apps: Torrus
+
+Torrus is a small web service I’m iterating on and deploying via Kustomize.
+
+- Location: `apps/torrus`
+- Base: `apps/torrus/base` (Deployment, Service, Ingress)
+- Overlays:
+  - Dev: `apps/torrus/overlays/dev` (namespace, config, secrets, patches)
+  - Prod: `apps/torrus/overlays/prod` (namespace and prod-specific config)
+
+Key notes
+- Image: `ghcr.io/tinoosan/torrus` with environment-specific tags.
+- Dev overlay adds ConfigMap/Secret and patches the Deployment/Ingress.
+- Ingress hosts are environment-scoped (example: `torrus.dev...`).
+
+### Deploying with Flux
+
+This repo is reconciled by FluxCD. Once changes are merged into `dev`, Flux applies them automatically to the dev environment. No manual `kubectl apply` is required in normal operation.
+
+### Local testing (optional)
+
+If you want to validate manifests locally before pushing:
+
+```
+kustomize build apps/torrus/overlays/dev | kubectl apply -f -
+```
+
+Remember to create any required secrets or use the sample in `apps/torrus/overlays/dev/secret.yaml` only for non-production purposes.
+
+### Configuration
+
+- ConfigMap: `torrus-config` holds non-sensitive settings (e.g., client type, aria2 RPC URL, logging settings).
+- Secret: `torrus-secrets` holds sensitive values (e.g., API tokens). Replace placeholder values before deploying outside of dev.
+
+## 🔁 Workflow
+
+I use a lightweight GitFlow-style workflow:
+
+1. Branch off `dev` for changes.
+2. Commit and open a PR into `dev`.
+3. Merge the PR; Flux reconciles and applies to the cluster.
+4. Promote to other environments with additional PRs as needed.
+
