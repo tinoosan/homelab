@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aria2
+  namespace: torrus-dev
+  labels:
+    app: aria2
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: aria2
+  template:
+    metadata:
+      labels:
+        app: aria2
+    spec:
+      containers:
+        - name: aria2
+          image: p3terx/aria2-pro:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rpc
+              containerPort: 6800
+          env:
+            - name: RPC_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: torrus-secrets
+                  key: ARIA2_SECRET
+            - name: RPC_PORT
+              value: "6800"
+            - name: ENABLE_RPC
+              value: "true"
+            - name: TZ
+              value: "UTC"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aria2
+  namespace: torrus-dev
+  labels:
+    app: aria2
+spec:
+  selector:
+    app: aria2
+  ports:
+    - name: rpc
+      port: 6800
+      targetPort: rpc
