@@ -9,7 +9,7 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: homelab-kustomization
+    - name: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
