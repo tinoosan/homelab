@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: torrus
+  labels: { app: torrus }
+spec:
+  selector:
+    matchLabels: { app: torrus }
+  template:
+    metadata:
+      labels: { app: torrus }
+    spec:
+      containers:
+        - name: torrus
+          image: ghcr.io/tinoosan/torrus
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 9090
+          readinessProbe:
+            httpGet: { path: /readyz, port: http }
+            initialDelaySeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            initialDelaySeconds: 10
