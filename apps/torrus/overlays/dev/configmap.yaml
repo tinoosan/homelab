@@ -5,7 +5,7 @@ metadata:
 data:
   TORRUS_CLIENT: "aria2"
   # For now (until aria2 runs in-cluster), keep local setting:
-  ARIA2_RPC_URL: "http://localhost:6800/jsonrpc"
+  ARIA2_RPC_URL: "http://aria2.torrus-dev.svc.cluster.local:6800/jsonrpc"
   ARIA2_TIMEOUT_MS: "5000"
   ARIA2_POLL_MS: "1000"
 
