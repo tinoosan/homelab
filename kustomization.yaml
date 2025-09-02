@@ -13,3 +13,4 @@ resources:
 
 patchesStrategicMerge:
   - infra/ingress-nginx-external-traffic-policy-patch.yaml
+  - infra/ingress-nginx-lbip-patch.yaml
