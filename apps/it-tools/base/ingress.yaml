@@ -15,4 +15,4 @@ spec:
           service:
             name: it-tools
             port:
-              number: http
+              name: http
