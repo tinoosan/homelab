@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: torrus
+spec:
+  rules:
+    - host: torrus.dev.xyz   # your dev host
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: torrus
+                port:
+                  number: 80
