@@ -6,6 +6,7 @@ resources:
   - namespace.yaml
   - configmap.yaml
   - secret.yaml
+  - aria2.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml
