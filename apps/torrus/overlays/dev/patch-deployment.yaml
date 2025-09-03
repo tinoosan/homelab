@@ -15,11 +15,11 @@ spec:
                 name: torrus-config
             - secretRef:
                 name: torrus-secrets
-        volumeMounts:
-          - name: plex-volume
-            mountPath: /media
+          volumeMounts:
+            - name: plex-volume
+              mountPath: /media
       volumes:
-       - name: plex-volume
-         hostPath:
-          path: /media/test
-          type: Directory
+        - name: plex-volume
+          hostPath:
+            path: /media/test
+            type: Directory
