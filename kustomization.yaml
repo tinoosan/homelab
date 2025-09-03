@@ -12,4 +12,3 @@ resources:
 
 patchesStrategicMerge:
   - infra/ingress-nginx-service-patch.yaml
-  - infra/metallb-speaker-patch.yaml
