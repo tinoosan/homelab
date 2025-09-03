@@ -5,20 +5,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: torrus.dev.jamaguchi.xyz
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: torrus
-              port:
-                number: 80
-        - path: /v1
-          pathType: Prefix
-          backend:
-            service:
-              name: torrus
-              port:
-                number: 80
+    - host: torrus.dev.jamaguchi.xyz   # patched per env in overlays
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: torrus
+                port:
+                  name: http

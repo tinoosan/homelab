@@ -7,6 +7,13 @@ spec:
     - host: torrus.dev.jamaguchi.xyz   # your dev host
       http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: torrus
+                port:
+                  number: 80
           - path: /v1
             pathType: Prefix
             backend:
