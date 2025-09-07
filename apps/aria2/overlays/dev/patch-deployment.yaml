@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        rollout/nonce: "2025-09-07T17:00:34Z"
+        rollout/nonce: "2025-09-07T15:00:00Z"
     spec:
       nodeSelector:
         kubernetes.io/hostname: mugiwara
@@ -14,13 +14,13 @@ spec:
       containers:
         - name: aria2
           securityContext:
-            runAsUser: 65532
-            runAsGroup: 65532
+            runAsUser: 0
+            runAsGroup: 0
           env:
             - name: PUID
-              value: "65532"
+              value: "0"
             - name: PGID
-              value: "65532"
+              value: "0"
           volumeMounts:
             - name: aria2-data
               mountPath: /data
