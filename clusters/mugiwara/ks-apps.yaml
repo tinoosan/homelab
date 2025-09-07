@@ -4,13 +4,30 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
+  timeout: 10m0s
   dependsOn:
     - name: monitoring
   interval: 5m
   path: ./clusters/mugiwara/apps
   prune: true
   wait: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: torrus
+      namespace: torrus-dev
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: aria2
+      namespace: torrus-dev
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: it-tools
+      namespace: default
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: plex
+      namespace: default
   sourceRef:
     kind: GitRepository
     name: flux-system
-
