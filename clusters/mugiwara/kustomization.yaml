@@ -6,8 +6,8 @@ resources:
   - ../../infra/metallb/base
   - ../../apps/aria2/overlays/dev
   - ../../apps/torrus/overlays/dev
-  - ../../apps/it-tools/overlays/dev
-  - ../../apps/plex/overlays/dev
+  - ../../apps/it-tools/overlays/prod
+  - ../../apps/plex/overlays/prod
 
 patchesStrategicMerge:
   - patch-ingress-nginx-service.yaml
