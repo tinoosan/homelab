@@ -4,8 +4,10 @@ resources:
   - https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.3/deploy/static/provider/cloud/deploy.yaml
   - ../../infra/metallb/base
-  - ../../infra/ingress-nginx/base
   - ../../apps/aria2/overlays/dev
   - ../../apps/torrus/overlays/dev
   - ../../apps/it-tools/overlays/dev
   - ../../apps/plex/overlays/dev
+
+patchesStrategicMerge:
+  - patch-ingress-nginx-service.yaml
