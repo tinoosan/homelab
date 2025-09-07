@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        rollout/nonce: "2025-09-07T15:00:00Z"
+        rollout/nonce: "2025-09-07T15:30:34Z"
     spec:
       nodeSelector:
         kubernetes.io/hostname: mugiwara
