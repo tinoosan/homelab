@@ -1,0 +1,41 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prom-stack
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 65.x.x
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  values:
+    fullnameOverride: mon
+    prometheus:
+      prometheusSpec:
+        scrapeInterval: 15s
+        evaluationInterval: 15s
+        retention: 7d
+        enableAdminAPI: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+    grafana:
+      enabled: true
+      defaultDashboardsEnabled: true
+      adminPassword: "admin"
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - grafana.dev.jamaguchi.xyz
+        path: /
+        pathType: Prefix
+    alertmanager:
+      enabled: true
+      alertmanagerSpec:
+        retention: 120h
+
