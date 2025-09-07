@@ -25,7 +25,7 @@ spec:
             - name: RPC_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: torrus-secrets     # uses your existing secret
+                  name: torrus-secrets
                   key: ARIA2_SECRET
             - name: RPC_PORT
               value: "6800"
@@ -34,7 +34,7 @@ spec:
             - name: TZ
               value: "UTC"
             - name: PUID
-              value: "65532"               # run as non-root (optional)
+              value: "65532"
             - name: PGID
               value: "65532"
             - name: UMASK_SET

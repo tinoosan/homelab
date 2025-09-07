@@ -3,3 +3,5 @@ kind: Kustomization
 namespace: torrus-dev
 resources:
   - ../../base
+patchesStrategicMerge:
+  - patch-deployment.yaml
