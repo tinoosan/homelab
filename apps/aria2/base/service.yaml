@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aria2
+  labels:
+    app: aria2
+spec:
+  selector:
+    app: aria2
+  ports:
+    - name: rpc
+      port: 6800
+      targetPort: rpc

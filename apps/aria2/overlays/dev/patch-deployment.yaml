@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aria2
+spec:
+  template:
+    metadata:
+      annotations:
+        rollout/nonce: "2025-09-07T15:00:00Z"
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: mugiwara
+
+      containers:
+        - name: aria2
+          volumeMounts:
+            - name: aria2-data
+              mountPath: /data
+
+      volumes:
+        - name: aria2-data
+          hostPath:
+            path: /media/test
+            type: Directory

@@ -2,13 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aria2
-  namespace: torrus-dev
   labels:
     app: aria2
 spec:
   replicas: 1
   selector:
-    matchLabels: 
+    matchLabels:
       app: aria2
   template:
     metadata:
@@ -26,7 +25,7 @@ spec:
             - name: RPC_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: torrus-secrets
+                  name: torrus-secrets     # uses your existing secret
                   key: ARIA2_SECRET
             - name: RPC_PORT
               value: "6800"
@@ -34,18 +33,21 @@ spec:
               value: "true"
             - name: TZ
               value: "UTC"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: aria2
-  namespace: torrus-dev
-  labels:
-    app: aria2
-spec:
-  selector:
-    app: aria2
-  ports:
-    - name: rpc
-      port: 6800
-      targetPort: rpc
+            - name: PUID
+              value: "65532"               # run as non-root (optional)
+            - name: PGID
+              value: "65532"
+            - name: UMASK_SET
+              value: "022"
+            - name: RPC_LISTEN_ALL
+              value: "true"
+            - name: DISK_CACHE
+              value: "64M"
+          volumeMounts:
+            - name: aria2-data
+              mountPath: /data
+      volumes:
+        - name: aria2-data
+          hostPath:
+            path: /media
+            type: Directory
