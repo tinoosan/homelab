@@ -14,8 +14,8 @@ spec:
       containers:
         - name: aria2
           securityContext:
-            runAsUser: 65532
-            runAsGroup: 65532
+            runAsUser: 0
+            runAsGroup: 0
           env:
             - name: PUID
               value: "65532"
