@@ -84,3 +84,6 @@ I use a lightweight GitFlow-style workflow:
 3. Merge the PR; Flux reconciles and applies to the cluster.
 4. Promote to other environments with additional PRs as needed.
 
+## 📄 Docs
+
+- Aria2 in Kubernetes — UID/GID & Permissions Gotchas: docs/aria2-k8s-permissions.md
