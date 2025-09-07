@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../infra/metallb/base
+  - ../../infra/ingress-nginx/base
+  - ../../apps/aria2/overlays/dev
+  - ../../apps/torrus/overlays/dev
+  - ../../apps/it-tools/overlays/dev
+  - ../../apps/plex/overlays/dev
+
