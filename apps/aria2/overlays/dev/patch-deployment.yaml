@@ -13,6 +13,14 @@ spec:
 
       containers:
         - name: aria2
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          env:
+            - name: PUID
+              value: "0"
+            - name: PGID
+              value: "0"
           volumeMounts:
             - name: aria2-data
               mountPath: /data
