@@ -10,7 +10,7 @@ spec:
   interval: 5m
   path: ./clusters/mugiwara/apps
   prune: true
-  wait: true
+  wait: false
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
