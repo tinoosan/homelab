@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: torrus-dev
 resources:
   - ../../base
-  - namespace.yaml
+  - ns.yaml
   - secret-app-creds.yaml
 patches:
   - path: patch-statefulset.yaml
