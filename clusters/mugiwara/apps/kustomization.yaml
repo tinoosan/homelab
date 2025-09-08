@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.3/deploy/static/provider/cloud/deploy.yaml
-    ../../../infra/local-path
+  - ../../../infra/local-path
   - ../../../infra/metallb/base
   - ../../../apps/aria2/overlays/dev
   - ../../../apps/torrus/overlays/dev
