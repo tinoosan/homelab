@@ -35,6 +35,7 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
+        storageClassName: low-latency
         resources:
           requests:
             storage: 10Gi
