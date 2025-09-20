@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       annotations:
-        rollout/nonce: "2025-09-18T20:06:00Z"
+        rollout/nonce: "2025-09-18T20:26:00Z"
       labels:
         app: torrus
     spec:
