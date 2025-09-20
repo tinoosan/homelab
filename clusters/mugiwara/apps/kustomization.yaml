@@ -10,8 +10,8 @@ resources:
   - ../../../apps/it-tools/overlays/prod
   - ../../../apps/plex/overlays/prod
   - ../../../apps/postgres/overlays/torrus-dev
+  - ../../../apps/pgadmin/overlays/torrus-dev
 
 
 patchesStrategicMerge:
   - patch-ingress-nginx-service.yaml
-
