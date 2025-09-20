@@ -6,25 +6,25 @@ set -e
 : "${APP_USER:?APP_USER not set}"
 : "${APP_PASSWORD:?APP_PASSWORD not set}"
 
-echo "Creating app database and user: $APP_DB / $APP_USER"
-psql -v ON_ERROR_STOP=1 --username "postgres" <<-SQL
-  DO \$\$
-  BEGIN
-    IF NOT EXISTS (SELECT FROM pg_database WHERE datname = '${APP_DB}') THEN
-      CREATE DATABASE "${APP_DB}";
-    END IF;
-  END
-  \$\$;
+echo "Ensuring app role and database exist: $APP_DB / $APP_USER"
 
-  DO \$\$
+# Ensure role exists and set password (must be done outside a transaction-safe block for CREATE DATABASE later)
+psql -v ON_ERROR_STOP=1 --username "postgres" <<-'SQL'
+  DO $$
   BEGIN
     IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${APP_USER}') THEN
-      CREATE USER "${APP_USER}" WITH PASSWORD '${APP_PASSWORD}';
+      EXECUTE format('CREATE USER %I WITH PASSWORD %L', '${APP_USER}', '${APP_PASSWORD}');
     ELSE
-      ALTER USER "${APP_USER}" WITH PASSWORD '${APP_PASSWORD}';
+      EXECUTE format('ALTER USER %I WITH PASSWORD %L', '${APP_USER}', '${APP_PASSWORD}');
     END IF;
   END
-  \$\$;
-
-  GRANT ALL PRIVILEGES ON DATABASE "${APP_DB}" TO "${APP_USER}";
+  $$;
 SQL
+
+# CREATE DATABASE cannot run inside a transaction/DO block. Check-and-create in separate commands.
+if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_database WHERE datname = '${APP_DB}'" | grep -q '^1$'; then
+  psql --username "postgres" -c "CREATE DATABASE \"${APP_DB}\""
+fi
+
+# Grant privileges
+psql --username "postgres" -c "GRANT ALL PRIVILEGES ON DATABASE \"${APP_DB}\" TO \"${APP_USER}\""
