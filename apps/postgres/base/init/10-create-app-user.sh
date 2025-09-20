@@ -8,14 +8,21 @@ set -e
 
 echo "Ensuring app role and database exist: $APP_DB / $APP_USER"
 
-# Ensure role exists and set password (must be done outside a transaction-safe block for CREATE DATABASE later)
-psql -v ON_ERROR_STOP=1 --username "postgres" <<-'SQL'
+# Ensure role exists and set password.
+# Use psql variables to safely inject env values while keeping DO $$ intact.
+psql -v ON_ERROR_STOP=1 \
+     -v APP_USER="${APP_USER}" \
+     -v APP_PASSWORD="${APP_PASSWORD}" \
+     --username "postgres" <<-'SQL'
   DO $$
+  DECLARE
+    v_user text := :'APP_USER';
+    v_pass text := :'APP_PASSWORD';
   BEGIN
-    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${APP_USER}') THEN
-      EXECUTE format('CREATE USER %I WITH PASSWORD %L', '${APP_USER}', '${APP_PASSWORD}');
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = v_user) THEN
+      EXECUTE format('CREATE USER %I WITH PASSWORD %L', v_user, v_pass);
     ELSE
-      EXECUTE format('ALTER USER %I WITH PASSWORD %L', '${APP_USER}', '${APP_PASSWORD}');
+      EXECUTE format('ALTER USER %I WITH PASSWORD %L', v_user, v_pass);
     END IF;
   END
   $$;
