@@ -20,5 +20,10 @@ if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_database WHERE datname 
   psql --username "postgres" -c "CREATE DATABASE \"${APP_DB}\""
 fi
 
-# Grant privileges
+# Ownership and schema privileges so the app can create tables in public
+psql --username "postgres" -c "ALTER DATABASE \"${APP_DB}\" OWNER TO \"${APP_USER}\""
+psql --username "postgres" -d "${APP_DB}" -c "ALTER SCHEMA public OWNER TO \"${APP_USER}\""
+psql --username "postgres" -d "${APP_DB}" -c "GRANT USAGE, CREATE ON SCHEMA public TO \"${APP_USER}\""
+
+# Grant database-level privileges (CONNECT, CREATE, TEMP)
 psql --username "postgres" -c "GRANT ALL PRIVILEGES ON DATABASE \"${APP_DB}\" TO \"${APP_USER}\""
