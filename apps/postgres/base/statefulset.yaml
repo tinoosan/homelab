@@ -28,6 +28,11 @@ spec:
               subPath: pgdata
             - name: init-scripts
               mountPath: /docker-entrypoint-initdb.d
+              # readOnly: true
+      volumes:
+        # placeholder; overlays replace with a ConfigMap
+        - name: init-scripts
+          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: data
