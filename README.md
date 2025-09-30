@@ -4,31 +4,44 @@ This repo documents and version-controls my personal homelab infrastructure. It�
 
 ## 🚀 Current Setup
 
-* **Kubernetes cluster** running on Ubuntu Live Server (bare metal)
-* **FluxCD GitOps pipeline** to automatically apply and reconcile changes
-* **Plex Media Server** deployed and exposed via NodePort
-* **Declarative infrastructure** written in YAML — no `kubectl apply` needed
-* **Mounted media and config volumes** for persistent Plex data
+- Kubernetes cluster on bare-metal Ubuntu
+- FluxCD GitOps pipeline (syncs from branch `main`)
+- Networking: MetalLB (L2) + ingress-nginx
+  - Ingress VIP: `192.168.0.110` (LoadBalancer for `ingress-nginx-controller`)
+- Storage: Longhorn
+- Apps (selected)
+  - Torrus (dev overlay) — Ingress `torrus.dev.jamaguchi.xyz`
+  - aria2 (dev overlay)
+  - it-tools (prod overlay) — Ingress `tools.jamaguchi.xyz`
+  - Plex (prod overlay)
+  - Postgres (torrus-dev)
+  - pgAdmin (torrus-dev) — Ingress `pgadmin.dev.jamaguchi.xyz`
+  - Monitoring: kube-prometheus-stack (Grafana Ingress `grafana.dev.jamaguchi.xyz`)
 
 ## 📚 Skills Demonstrated
 
-* Kubernetes workload and volume configuration
-* GitOps workflows with FluxCD
-* Bare-metal Kubernetes service exposure (NodePort)
-* Debugging YAML and Kustomize deployment issues
-* Managing persistent storage in a containerized environment
+- Kubernetes workloads, storage, and Ingress
+- GitOps workflows with FluxCD (PRs → `main` → reconcile)
+- Bare‑metal networking with MetalLB and ingress-nginx
+- Observability with kube‑prometheus‑stack
+- Operational runbooks for DB init, rollouts, and DNS
 
-## 🚫 What's Not Included
+## 🌐 DNS & Access
 
-* Ingress / reverse proxy: Removed for Plex due to incompatibilities with direct stream and remote access
-* Public DNS routing: Domain configuration is internal-only (via `/etc/hosts`)
+- Internal DNS: use a DNS A record or `/etc/hosts` pointing desired hostnames to `192.168.0.110`.
+  - Example `/etc/hosts` entries:
+    - `192.168.0.110 torrus.dev.jamaguchi.xyz`
+    - `192.168.0.110 pgadmin.dev.jamaguchi.xyz`
+    - `192.168.0.110 grafana.dev.jamaguchi.xyz`
+- Recommended: wildcard DNS `*.dev.jamaguchi.xyz → 192.168.0.110` (see issue #160)
 
-## 🧭 Roadmap
+## 🧭 Roadmap (selected)
 
-* [ ] Add Prometheus and Grafana for observability
-* [ ] Implement persistent storage with Longhorn or NFS
-* [ ] Automate TLS certificates for future services (e.g., cert-manager)
-* [ ] Deploy additional apps (Jellyfin, Nextcloud, etc.)
+- TLS for Ingress hosts via cert‑manager (issue #155)
+- pgAdmin persistence (PVC) (issue #154)
+- Postgres backups (issue #156)
+- Monitoring: Postgres exporter and dashboards (issue #157)
+- Secrets rotation (issue #158)
 
 ## 🧠 Motivation
 
@@ -58,7 +71,7 @@ Key notes
 
 ### Deploying with Flux
 
-This repo is reconciled by FluxCD. Once changes are merged into `dev`, Flux applies them automatically to the dev environment. No manual `kubectl apply` is required in normal operation.
+This repo is reconciled by FluxCD from branch `main`. Workflow is PRs → `main` → Flux applies to cluster. No manual `kubectl apply` in normal operation.
 
 ### Local testing (optional)
 
@@ -77,13 +90,73 @@ Remember to create any required secrets or use the sample in `apps/torrus/overla
 
 ## 🔁 Workflow
 
-I use a lightweight GitFlow-style workflow:
+Lightweight PR workflow:
 
-1. Branch off `dev` for changes.
-2. Commit and open a PR into `dev`.
-3. Merge the PR; Flux reconciles and applies to the cluster.
-4. Promote to other environments with additional PRs as needed.
+1. Create a feature/fix branch from `main`.
+2. Open a PR to `main`.
+3. Merge the PR; Flux reconciles and applies changes to the cluster.
+4. For rollouts that need a restart, bump the annotation nonce.
+
+Rollout bump (example): update `apps/torrus/base/deployment.yaml` template annotation
+- `rollout/nonce: "YYYY-MM-DDTHH:MM:SSZ"` (any change triggers a rollout)
+
+Note: `clusters/mugiwara/ks-apps.yaml` sets `force: true` to handle immutable resource replacement when needed.
+
+### Databases (Postgres for Torrus)
+
+- Location: `apps/postgres` (base + `overlays/torrus-dev`)
+- Init script behavior (`apps/postgres/base/init/10-create-app-user.sh`):
+  - Creates/updates app user and password
+  - Creates DB (outside transactions), sets DB owner
+  - Grants `USAGE, CREATE` on `public` schema to the app user
+- Re‑init (dev): scale StatefulSet to 0, delete PVC `data-postgres-0`, scale to 1. This reruns init.
+- pgAdmin UI (torrus-dev): `pgadmin.dev.jamaguchi.xyz`
+  - Default login: `torrus-dev@dev.jamaguchi.xyz` / `ChangeMePgAdmin` (change in `apps/pgadmin/overlays/torrus-dev/secret.yaml`)
+  - Connect to host `postgres`, DB `torrus`, user `torrus` (password from `postgres-auth`)
+
+Common DB operations
+- Drop/recreate DB (clean slate, Postgres ≥16):
+  - `DROP DATABASE "torrus" WITH (FORCE);`
+  - `CREATE DATABASE "torrus" OWNER "torrus";`
+- Truncate all tables in `public` (keep DB): generate TRUNCATE statements from `pg_tables`.
 
 ## 📄 Docs
 
 - Aria2 in Kubernetes — UID/GID & Permissions Gotchas: docs/aria2-k8s-permissions.md
+ - MetalLB VIP troubleshooting: docs/metallb-vip-troubleshooting.md
+
+## 🔑 Quickstart
+
+- DNS/hosts setup (dev): ensure hostnames resolve to the Ingress VIP `192.168.0.110`.
+  - Example `/etc/hosts` entries:
+    - `192.168.0.110 torrus.dev.jamaguchi.xyz`
+    - `192.168.0.110 pgadmin.dev.jamaguchi.xyz`
+    - `192.168.0.110 grafana.dev.jamaguchi.xyz`
+
+- Access apps
+  - Torrus: http://torrus.dev.jamaguchi.xyz
+  - pgAdmin: http://pgadmin.dev.jamaguchi.xyz
+    - Default login: `torrus-dev@dev.jamaguchi.xyz` / `ChangeMePgAdmin`
+    - Register a server with: Host `postgres`, Port `5432`, DB `torrus`, User `torrus`, Password from Secret `postgres-auth.APP_PASSWORD`.
+
+- Postgres maintenance (CLI)
+  - Exec psql in pod: `kubectl -n torrus-dev exec -it postgres-0 -- psql -U postgres`
+  - Drop/recreate DB (Postgres ≥16): `DROP DATABASE "torrus" WITH (FORCE); CREATE DATABASE "torrus" OWNER "torrus";`
+
+## 🔄 Flux Operations
+
+- Check reconciliation state
+  - `flux get kustomizations -n flux-system`
+  - `flux get sources git -n flux-system`
+
+- Force a reconcile (useful after merging PRs)
+  - Source: `flux reconcile source git flux-system -n flux-system`
+  - Apps: `flux reconcile kustomization apps -n flux-system`
+  - Monitoring: `flux reconcile kustomization monitoring -n flux-system`
+
+- Tail controller logs
+  - `flux logs -f -n flux-system`
+
+- Verify rollouts
+  - Torrus: `kubectl -n torrus-dev rollout status deploy/torrus`
+  - Ingress NGINX LB: `kubectl -n ingress-nginx get svc ingress-nginx-controller -o wide`
