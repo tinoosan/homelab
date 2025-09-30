@@ -52,7 +52,7 @@ spec:
       volumes:
           - name: init-sql
             configMap:
-              name: ledger-pg-init
+              name: pg-init
               defaultMode: 0755
   volumeClaimTemplates:
     - metadata:
