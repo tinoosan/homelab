@@ -28,11 +28,6 @@ spec:
               subPath: pgdata
             - name: init-scripts
               mountPath: /docker-entrypoint-initdb.d
-      volumes:
-        - name: init-scripts
-          configMap:
-            name: pg-init-scripts
-            defaultMode: 0755
   volumeClaimTemplates:
     - metadata:
         name: data

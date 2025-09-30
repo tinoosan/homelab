@@ -34,6 +34,11 @@ spec:
                 secretKeyRef:
                   name: postgres-auth
                   key: POSTGRES_PASSWORD
+      volumes:
+      - name: init-scripts
+        configMap:
+          name: pg-init-scripts
+          defaultMode: 0755
   volumeClaimTemplates:
     - metadata:
         name: data
