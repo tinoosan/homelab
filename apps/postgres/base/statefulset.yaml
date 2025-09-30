@@ -22,6 +22,12 @@ spec:
           ports:
             - name: pg
               containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              subPath: pgdata
+            - name: init-scripts
+              mountPath: /docker-entrypoint-initdb.d
   volumeClaimTemplates:
     - metadata:
         name: data
