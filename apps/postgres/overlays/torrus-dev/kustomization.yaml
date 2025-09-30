@@ -4,6 +4,7 @@ namespace: torrus-dev
 resources:
   - ../../base
   - secret-app-creds.yaml
+  - ns.yaml
 configMapGenerator:
   - name: pg-init
     files:
