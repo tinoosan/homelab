@@ -7,6 +7,6 @@ resources:
 configMapGenerator:
   - name: pg-init-scripts
     files:
-      - init/10-create-app-user.sh
+      - ../../base/init/10-create-app-user.sh
 patches:
   - path: patch-statefulset.yaml

@@ -7,6 +7,6 @@ resources:
 configMapGenerator:
   - name: ledger-pg-init
     files:
-      - init/0001_init.sql
+      - ../../base/init/0001_init.sql
 patches:
   - path: patch-statefulset.yaml
