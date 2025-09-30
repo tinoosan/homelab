@@ -18,29 +18,23 @@ spec:
             - name: APP_DB
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth
+                  name: pg-secret
                   key: APP_DB
             - name: APP_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth
+                  name: pg-secret
                   key: APP_USER
             - name: APP_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth
+                  name: pg-secret
                   key: APP_PASSWORD
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-auth
+                  name: pg-secret
                   key: POSTGRES_PASSWORD
-          volumeMounts:
-          - name: data
-            mountPath: /var/lib/postgresql/data
-            subPath: pgdata
-          - name: init-scripts
-            mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: init-scripts
         configMap:
