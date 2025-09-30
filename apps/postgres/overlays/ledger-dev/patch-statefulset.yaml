@@ -45,7 +45,7 @@ spec:
               memory: "1Gi"
       volumes:
           - name: init-sql
-            cconfigMap:
+            configMap:
               name: ledger-pg-init
               defaultMode: 0755
   volumeClaimTemplates:
