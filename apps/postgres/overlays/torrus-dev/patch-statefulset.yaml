@@ -44,5 +44,5 @@ spec:
       volumes:
       - name: init-scripts
         configMap:
-          name: pg-init-scripts
+          name: pg-init
           defaultMode: 0755
