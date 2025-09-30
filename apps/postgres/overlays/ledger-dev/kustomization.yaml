@@ -8,5 +8,5 @@ configMapGenerator:
   - name: pg-init
     files:
       - 00-schema.sql=0001_init.sql
-patches:
+patchesStrategicMerge:
   - path: patch-statefulset.yaml
