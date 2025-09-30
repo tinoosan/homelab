@@ -19,12 +19,16 @@ spec:
       namespace: torrus-dev
     - apiVersion: apps/v1
       kind: Deployment
+      name: ledger
+      namespace: ledger-dev
+    - apiVersion: apps/v1
+      kind: Deployment
       name: aria2
       namespace: torrus-dev
     - apiVersion: apps/v1
       kind: Deployment
       name: it-tools
-      namespace: default
+      namespace: tools
     - apiVersion: apps/v1
       kind: Deployment
       name: plex
