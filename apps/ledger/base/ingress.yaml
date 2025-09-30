@@ -1,0 +1,18 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ledger
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.ledger.jamaguchi.xyz   # patched per env in overlays
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ledger
+                port:
+                  name: http
