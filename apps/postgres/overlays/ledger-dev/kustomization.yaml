@@ -5,8 +5,8 @@ resources:
   - ../../base
   - secret-app-creds.yaml
 configMapGenerator:
-  - name: ledger-pg-init
+  - name: pg-init
     files:
-      - ../../base/init/0001_init.sql
+      - 00-schema.sql=init/0001_init.sql
 patches:
   - path: patch-statefulset.yaml
