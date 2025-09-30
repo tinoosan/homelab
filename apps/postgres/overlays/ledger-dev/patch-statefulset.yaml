@@ -10,17 +10,17 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: ledger-pg-secrets
+                  name: pg-secret
                   key: POSTGRES_USER
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: ledger-pg-secrets
+                  name: pg-secret
                   key: POSTGRES_DB
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ledger-pg-secrets
+                  name: pg-secret
                   key: POSTGRES_PASSWORD
           readinessProbe:
             exec:
