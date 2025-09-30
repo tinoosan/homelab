@@ -43,6 +43,12 @@ spec:
             limits:
               cpu: "500m"
               memory: "1Gi"
+          volumeMounts:
+              - name: pgdata
+                mountPath: /var/lib/postgresql/data
+              - name: init-sql
+                mountPath: /docker-entrypoint-initdb.d
+                readOnly: true
       volumes:
           - name: init-sql
             configMap:
