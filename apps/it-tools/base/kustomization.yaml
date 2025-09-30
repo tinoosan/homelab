@@ -4,6 +4,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - namespace.yaml
 images:
   - name: corentinth/it-tools
     newTag: nightly  # placeholder; overlays will override
