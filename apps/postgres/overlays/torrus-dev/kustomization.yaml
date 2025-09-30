@@ -5,7 +5,7 @@ resources:
   - ../../base
   - secret-app-creds.yaml
 configMapGenerator:
-  - name: pg-init-scripts
+  - name: pg-init
     files:
       - ../../base/init/10-create-app-user.sh
 patches:
