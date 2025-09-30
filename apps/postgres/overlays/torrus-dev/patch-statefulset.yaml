@@ -29,6 +29,11 @@ spec:
                 secretKeyRef:
                   name: postgres-auth
                   key: APP_PASSWORD
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-auth
+                  key: POSTGRES_PASSWORD
   volumeClaimTemplates:
     - metadata:
         name: data
