@@ -3,9 +3,5 @@ kind: Kustomization
 resources:
   - service.yaml
   - statefulset.yaml
-configMapGenerator:
-  - name: pg-init-scripts
-    files:
-      - init/10-create-app-user.sh
 generatorOptions:
   disableNameSuffixHash: true

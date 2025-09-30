@@ -43,6 +43,11 @@ spec:
             limits:
               cpu: "500m"
               memory: "1Gi"
+      volumes:
+          - name: init-sql
+            cconfigMap:
+              name: ledger-pg-init
+              defaultMode: 0755
   volumeClaimTemplates:
     - metadata:
         name: data
