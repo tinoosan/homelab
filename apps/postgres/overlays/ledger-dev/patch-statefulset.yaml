@@ -47,7 +47,7 @@ spec:
           volumeMounts:
             - name: ledger-dev
               mountPath: /var/lib/postgresql/data
-              subpath: pgdata
+              subPath: pgdata
             - name: init-sql
               mountPath: /docker-entrypoint-initdb.d
       volumes:
