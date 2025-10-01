@@ -1,5 +1,6 @@
-image:
-  tag: 24.0.5
+# Use chart default image/tag (tracks AppVersion)
+# image:
+#   tag: 24.0.5
 
 replicas: 1
 resources:
