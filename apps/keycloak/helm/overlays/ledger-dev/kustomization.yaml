@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ledger-dev
+resources:
+  - ../../base
+  - namespace.yaml
+  - secret-admin.yaml
+  - secret-db.yaml
+configMapGenerator:
+  - name: keycloak-env-values
+    files:
+      - values.patch.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+patches:
+  - target:
+      kind: HelmRelease
+      name: keycloak
+    patch: |-
+      - op: add
+        path: /metadata/namespace
+        value: ledger-dev
+      - op: add
+        path: /spec/valuesFrom/-
+        value:
+          kind: ConfigMap
+          name: keycloak-env-values
+          valuesKey: values.patch.yaml

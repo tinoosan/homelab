@@ -1,0 +1,22 @@
+# Only env-specific knobs here
+ingress:
+  hostname: keycloak.local
+persistence:
+  storageClass: longhorn
+
+# ADMIN bootstrap via existingSecret (recommended)
+auth:
+  existingSecret: keycloak-admin-secret
+
+postgresql:
+  enabled: true
+  auth:
+    username: keycloak
+    password: change-me-db
+    database: keycloak
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
+      storageClass: longhorn
+externalDatabase: {}
