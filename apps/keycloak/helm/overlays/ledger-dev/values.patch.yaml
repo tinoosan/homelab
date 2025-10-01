@@ -20,3 +20,7 @@ postgresql:
       size: 5Gi
       storageClass: longhorn
 externalDatabase: {}
+
+# Force rollouts when bumping image or config
+podAnnotations:
+  homelab.dev/rollout-nonce: "2025-10-01-01"
