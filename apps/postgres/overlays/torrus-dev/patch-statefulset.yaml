@@ -45,3 +45,11 @@ spec:
           configMap:
             name: pg-init
             defaultMode: 0755
+  volumeClaimTemplates:
+    - metadata:
+        name: torrus-dev
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
