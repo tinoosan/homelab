@@ -54,3 +54,11 @@ spec:
             configMap:
               name: pg-init
               defaultMode: 0644
+  volumeClaimTemplates:
+    - metadata:
+        name: ledger-dev
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
