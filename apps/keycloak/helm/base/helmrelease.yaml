@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: keycloak
-      version: 24.x.x          # pin a tested version
+      version: 24.9.0          # pin a tested version
       sourceRef:
         kind: HelmRepository
         name: bitnami
