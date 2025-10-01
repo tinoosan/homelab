@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: ledger-dev
 resources:
   - ../../base
-  - namespace.yaml
   - secret-admin.yaml
   - secret-db.yaml
 configMapGenerator:
