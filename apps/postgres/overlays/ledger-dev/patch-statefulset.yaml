@@ -4,6 +4,7 @@ metadata:
   name: postgres
 spec:
   template:
+    spec:
       containers:
         - name: postgres
           env:
