@@ -9,6 +9,7 @@ resources:
   - ../../../apps/aria2/overlays/dev
   - ../../../apps/torrus/overlays/dev
   - ../../../apps/ledger/overlays/dev
+  - ../../../apps/keycloak/overlays/ledger-dev
   - ../../../apps/it-tools/overlays/prod
   - ../../../apps/plex/overlays/prod
   - ../../../apps/postgres/overlays/torrus-dev
