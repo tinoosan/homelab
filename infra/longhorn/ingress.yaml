@@ -5,6 +5,7 @@ metadata:
   name: longhorn-ingress
   namespace: longhorn-system
 spec:
+  ingressClassName: nginx
   rules:
     - host: longhorn.local
       http:
