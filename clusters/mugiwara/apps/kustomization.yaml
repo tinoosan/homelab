@@ -4,6 +4,7 @@ resources:
   - https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.3/deploy/static/provider/cloud/deploy.yaml
   - ../../../infra/longhorn
+  - ../../../infra/keycloak
   - ../../../infra/metallb/base
   - ../../../apps/aria2/overlays/dev
   - ../../../apps/torrus/overlays/dev
