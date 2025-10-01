@@ -45,7 +45,7 @@ spec:
               cpu: "500m"
               memory: "1Gi"
           volumeMounts:
-              - name: pgdata
+              - name: ledger-dev
                 mountPath: /var/lib/postgresql/data
                 subpath: pgdata
               - name: init-sql
