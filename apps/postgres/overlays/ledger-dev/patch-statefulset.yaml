@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres
+  namespace: ledger-dev
 spec:
   template:
       containers:
@@ -53,7 +54,7 @@ spec:
           - name: init-sql
             configMap:
               name: pg-init
-              defaultMode: 0755
+              defaultMode: 0644
   volumeClaimTemplates:
     - metadata:
         name: data

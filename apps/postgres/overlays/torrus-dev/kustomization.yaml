@@ -4,9 +4,10 @@ namespace: torrus-dev
 resources:
   - ../../base
   - secret-app-creds.yaml
+  - ns.yaml
 configMapGenerator:
   - name: pg-init
     files:
-      - ../../base/init/10-create-app-user.sh
-patches:
+      - 00-init.sh=00-init.sh
+patchesStrategicMerge:
   - path: patch-statefulset.yaml
