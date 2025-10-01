@@ -8,6 +8,6 @@ configMapGenerator:
   - name: pg-init
     files:
       - 00-roles.sh=init/00-roles.sh
-      - 01-schema.sql=init/01_schema.sql
+      - 01-schema.sql=init/01-schema.sql
 patchesStrategicMerge:
   - patch-statefulset.yaml
