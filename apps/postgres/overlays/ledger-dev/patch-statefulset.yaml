@@ -45,11 +45,11 @@ spec:
               cpu: "500m"
               memory: "1Gi"
           volumeMounts:
-              - name: ledger-dev
-                mountPath: /var/lib/postgresql/data
-                subpath: pgdata
-              - name: init-sql
-                mountPath: /docker-entrypoint-initdb.d
+            - name: ledger-dev
+              mountPath: /var/lib/postgresql/data
+              subPath: pgdata
+            - name: init-sql
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
           - name: init-sql
             configMap:
