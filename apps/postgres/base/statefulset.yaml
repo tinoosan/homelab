@@ -26,11 +26,3 @@ spec:
             - name: data
               mountPath: /var/lib/postgresql/data
               subPath: pgdata
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 10Gi
