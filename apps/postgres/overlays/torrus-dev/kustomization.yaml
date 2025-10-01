@@ -10,4 +10,4 @@ configMapGenerator:
     files:
       - 00-init.sh=00-init.sh
 patchesStrategicMerge:
-  - path: patch-statefulset.yaml
+  - patch-statefulset.yaml
