@@ -1,6 +1,3 @@
-image:
-  tag: nightly
-
 replicas: 1
 resources:
   requests:
