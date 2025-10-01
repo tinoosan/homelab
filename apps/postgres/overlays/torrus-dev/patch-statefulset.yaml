@@ -35,11 +35,11 @@ spec:
                   name: pg-secret
                   key: POSTGRES_PASSWORD
           volumeMounts:
-          - name: data
-            mountPath: /var/lib/postgresql/data
-            subPath: pgdata
-          - name: init-scripts
-            mountPath: /docker-entrypoint-initdb.d
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              subPath: pgdata
+            - name: init-scripts
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: init-scripts
           configMap:
