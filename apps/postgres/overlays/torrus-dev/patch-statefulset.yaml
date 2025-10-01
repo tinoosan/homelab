@@ -35,7 +35,7 @@ spec:
                   name: pg-secret
                   key: POSTGRES_PASSWORD
           volumeMounts:
-            - name: data
+            - name: torrus-dev
               mountPath: /var/lib/postgresql/data
               subPath: pgdata
             - name: init-scripts
