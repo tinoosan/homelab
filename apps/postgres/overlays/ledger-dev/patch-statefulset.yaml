@@ -46,6 +46,7 @@ spec:
           volumeMounts:
               - name: pgdata
                 mountPath: /var/lib/postgresql/data
+                subpath: ledger-dev
               - name: init-sql
                 mountPath: /docker-entrypoint-initdb.d
                 readOnly: true
@@ -54,12 +55,3 @@ spec:
             configMap:
               name: pg-init
               defaultMode: 0644
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 10Gi
