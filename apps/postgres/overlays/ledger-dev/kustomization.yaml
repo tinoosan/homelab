@@ -4,10 +4,9 @@ namespace: ledger-dev
 resources:
   - ../../base
   - secret-app-creds.yaml
-  - ns.yaml
 configMapGenerator:
   - name: pg-init
     files:
       - 00-schema.sql=0001_init.sql
 patchesStrategicMerge:
-  - path: patch-statefulset.yaml
+  - patch-statefulset.yaml
