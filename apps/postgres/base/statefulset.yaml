@@ -26,9 +26,6 @@ spec:
             - name: data
               mountPath: /var/lib/postgresql/data
               subPath: pgdata
-            - name: init-scripts
-              mountPath: /docker-entrypoint-initdb.d
-              # readOnly: true
   volumeClaimTemplates:
     - metadata:
         name: data
