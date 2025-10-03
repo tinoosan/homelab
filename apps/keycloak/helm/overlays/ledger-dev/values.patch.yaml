@@ -1,3 +1,6 @@
+image:
+  registry: docker.io
+  repository: keycloak/keycloak
 # Only env-specific knobs here
 ingress:
   hostname: keycloak.local
