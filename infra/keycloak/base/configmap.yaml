@@ -1,10 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: keycloak-configmap
+  name: keycloak-config
 data:
-  PUID: "1000"
-  PGID: "1000"
-  TZ: "Etc/UTC"
   VERSION: "docker"
 
