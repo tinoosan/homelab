@@ -6,6 +6,6 @@ resources:
   - ingress.yaml
   - servicemonitor.yaml
 images:
-  - name: ghcr.io/tinoosan/leg
+  - name: ghcr.io/tinoosan/legder
     newTag: dev   # placeholder; overlays will override
 
