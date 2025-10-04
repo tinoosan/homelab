@@ -20,6 +20,7 @@ spec:
         image: quay.io/keycloak/keycloak:latest
         imagePullPolicy: IfNotPresent
         args:
+            - kc.sh build
             - start
             - --optimized
             - --http-enabled=true
