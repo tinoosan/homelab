@@ -31,3 +31,14 @@ spec:
                 name: keycloak-config
             - secretRef:
                 name: keycloak-secrets
+        readinessProbe:
+                httpGet: { path: /health/ready, port: 8080 }
+                initialDelaySeconds: 25
+                periodSeconds: 10
+        livenessProbe:
+          httpGet: { path: /health/live, port: 8080 }
+          initialDelaySeconds: 40
+          periodSeconds: 15
+        resources:
+          requests: { cpu: 250m, memory: 512Mi }
+          limits:   { memory: 1Gi }
