@@ -21,7 +21,6 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
             - start
-            - --optimized
             - --http-enabled=true
             - --hostname-strict=false
         ports:
