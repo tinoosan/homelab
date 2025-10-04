@@ -13,6 +13,7 @@ resources:
   - ../../../apps/plex/overlays/prod
   - ../../../apps/postgres/overlays/torrus-dev
   - ../../../apps/postgres/overlays/ledger-dev
+  - ../../../apps/postgres/overlays/keycloak
   - ../../../apps/pgadmin/overlays/torrus-dev
 
 
