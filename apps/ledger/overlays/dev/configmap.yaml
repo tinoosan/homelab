@@ -11,4 +11,4 @@ data:
   JWT_JWKS_URL: http://keycloak.jamaguchi.xyz/realms/master/protocol/openid-connect/certs
   # Must match the exact iss claim in tokens your callers use
   JWT_ISSUER: https://keycloak.jamaguchi.xyz/realms/master
-  JWT_AUDIENCE: ledger-api
+  JWT_AUDIENCE: ledger-dev
