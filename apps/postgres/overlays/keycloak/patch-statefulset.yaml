@@ -14,7 +14,7 @@ spec:
             limits:
               memory: "512Mi"
           envFrom:
-              - secretRef: { name: pg-secrets }
+              - secretRef: { name: pg-secret }
               - configMapRef: { name: keycloak-db-config }
           volumeMounts:
             - name: keycloak
