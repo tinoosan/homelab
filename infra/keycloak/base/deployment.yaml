@@ -18,6 +18,7 @@ spec:
       containers:
       - name: keycloak
         image: quay.io/keycloak/keycloak:latest
+        imagePullPolicy: IfNotPresent
         ports:
           - name: http
             containerPort: 8080
