@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: keycloak-config
 data:
-  VERSION: "docker"
+  KC_HOSTNAME: localhost
+  KC_HEALTH_ENABLED: true
+  KC_METRICS_ENABLED: true
 
