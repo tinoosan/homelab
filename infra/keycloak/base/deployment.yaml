@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
             - start-dev
-            - http-enabled=true
+            - --http-enabled=true
         ports:
           - name: http
             containerPort: 8080
