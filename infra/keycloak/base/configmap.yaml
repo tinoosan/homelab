@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: keycloak-config
 data:
-  KC_HOSTNAME: localhost
+  KC_HOSTNAME: keycloak.jamaguchi.xyz
   KC_HEALTH_ENABLED: "true"
   KC_METRICS_ENABLED: "true"
 
