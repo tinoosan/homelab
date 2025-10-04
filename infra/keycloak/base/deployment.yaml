@@ -28,4 +28,4 @@ spec:
             - secretRef:
                 name: keycloak-secrets
         exec:
-          command: ["kc.sh", "start"]
+          command: ["start"]
