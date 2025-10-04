@@ -19,6 +19,11 @@ spec:
       - name: keycloak
         image: quay.io/keycloak/keycloak:latest
         imagePullPolicy: IfNotPresent
+        args:
+            - start
+            - --optimized
+            - --http-enabled=true
+            - --hostname-strict=false
         ports:
           - name: http
             containerPort: 8080
@@ -27,5 +32,3 @@ spec:
                 name: keycloak-config
             - secretRef:
                 name: keycloak-secrets
-        exec:
-          command: ["start"]
