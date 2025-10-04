@@ -15,7 +15,7 @@ spec:
               memory: "512Mi"
           envFrom:
               - secretRef:
-                  name: secret.yaml
+                  name: secrets.yaml
               - configMapRef: { name: keycloak-db-config }
           volumeMounts:
             - name: keycloak
