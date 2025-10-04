@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: keycloak
+      annotations:
+        homelab.dev/rollout-nonce: "2025-10-01-02"
     spec:
       containers:
       - name: keycloak
