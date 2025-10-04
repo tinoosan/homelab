@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: keycloak
 resources:
   - ../../base
-  - secret-app-creds.yaml
+  - secrets.yaml
+  - configmap.yaml
 patchesStrategicMerge:
   - patch-statefulset.yaml
