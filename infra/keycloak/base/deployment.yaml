@@ -20,9 +20,8 @@ spec:
         image: quay.io/keycloak/keycloak:latest
         imagePullPolicy: IfNotPresent
         args:
-            - kc.sh build
+            - kc.sh
             - start
-            - --optimized
             - --http-enabled=true
             - --hostname-strict=false
         ports:
