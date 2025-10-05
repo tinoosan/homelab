@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: it-tools
-  namespace: tools
   labels:
     app: it-tools
 spec:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: it-tools
-        image: corentinth/it-tools:nightly
+        image: corentinth/it-tools:latest
         ports:
           - name: http
             containerPort: 8080
