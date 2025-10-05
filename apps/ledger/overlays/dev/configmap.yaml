@@ -10,5 +10,5 @@ data:
   # RS256/JWKS (recommended)
   JWT_JWKS_URL: http://keycloak.jamaguchi.xyz/realms/homelab/protocol/openid-connect/certs
   # Must match the exact iss claim in tokens your callers use
-  JWT_ISSUER: https://keycloak.jamaguchi.xyz/realms/homelab
+  JWT_ISSUER: http://keycloak.jamaguchi.xyz/realms/homelab
   JWT_AUDIENCE: ledger-api
