@@ -4,11 +4,10 @@ metadata:
   name: ledger-config
 data:
   LOG_FORMAT: json
-  LOG_LEVEL: INFO
+  LOG_LEVEL: DEBUG
   DEV_SEED: "true"                  
   MAX_BODY_BYTES: "1048576"
   # RS256/JWKS (recommended)
   JWT_JWKS_URL: http://keycloak.jamaguchi.xyz/realms/homelab/protocol/openid-connect/certs
-  # Must match the exact iss claim in tokens your callers use
   JWT_ISSUER: http://keycloak.jamaguchi.xyz/realms/homelab
   JWT_AUDIENCE: ledger-api
