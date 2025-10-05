@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-01-03"
+        homelab.dev/rollout-nonce: "2025-10-01-04"
     spec:
       containers:
         - name: ledger
