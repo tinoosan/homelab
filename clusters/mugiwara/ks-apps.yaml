@@ -29,6 +29,10 @@ spec:
       kind: Deployment
       name: plex
       namespace: default
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: keycloak
+      namespace: keycloak
   sourceRef:
     kind: GitRepository
     name: flux-system
