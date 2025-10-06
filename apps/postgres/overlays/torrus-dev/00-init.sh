@@ -2,28 +2,28 @@
 set -e
 
 # These are expected to be provided by the overlay Secret via the Pod env.
-: "${APP_DB:?APP_DB not set}"
-: "${APP_USER:?APP_USER not set}"
-: "${APP_PASSWORD:?APP_PASSWORD not set}"
+: "${POSTGRES_DB:?POSTGRES_DB not set}"
+: "${POSTGRES_USER:?POSTGRES_USER not set}"
+: "${POSTGRES_PASSWORD:?POSTGRES_PASSWORD not set}"
 
-echo "Ensuring app role and database exist: $APP_DB / $APP_USER"
+echo "Ensuring app role and database exist: $POSTGRES_DB / $POSTGRES_USER"
 
 # Ensure role exists and set password without using DO/transactions to avoid quoting pitfalls.
-if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_roles WHERE rolname = '${APP_USER}'" | grep -q '^1$'; then
-  psql --username "postgres" -c "CREATE USER \"${APP_USER}\" WITH PASSWORD '${APP_PASSWORD}'"
+if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_roles WHERE rolname = '${POSTGRES_USER}'" | grep -q '^1$'; then
+  psql --username "postgres" -c "CREATE USER \"${POSTGRES_USER}\" WITH PASSWORD '${POSTGRES_PASSWORD}'"
 else
-  psql --username "postgres" -c "ALTER USER \"${APP_USER}\" WITH PASSWORD '${APP_PASSWORD}'"
+  psql --username "postgres" -c "ALTER USER \"${POSTGRES_USER}\" WITH PASSWORD '${POSTGRES_PASSWORD}'"
 fi
 
 # CREATE DATABASE cannot run inside a transaction/DO block. Check-and-create in separate commands.
-if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_database WHERE datname = '${APP_DB}'" | grep -q '^1$'; then
-  psql --username "postgres" -c "CREATE DATABASE \"${APP_DB}\""
+if ! psql -tA --username "postgres" -c "SELECT 1 FROM pg_database WHERE datname = '${POSTGRES_DB}'" | grep -q '^1$'; then
+  psql --username "postgres" -c "CREATE DATABASE \"${POSTGRES_DB}\""
 fi
 
 # Ownership and schema privileges so the app can create tables in public
-psql --username "postgres" -c "ALTER DATABASE \"${APP_DB}\" OWNER TO \"${APP_USER}\""
-psql --username "postgres" -d "${APP_DB}" -c "ALTER SCHEMA public OWNER TO \"${APP_USER}\""
-psql --username "postgres" -d "${APP_DB}" -c "GRANT USAGE, CREATE ON SCHEMA public TO \"${APP_USER}\""
+psql --username "postgres" -c "ALTER DATABASE \"${POSTGRES_DB}\" OWNER TO \"${POSTGRES_USER}\""
+psql --username "postgres" -d "${POSTGRES_DB}" -c "ALTER SCHEMA public OWNER TO \"${POSTGRES_USER}\""
+psql --username "postgres" -d "${POSTGRES_DB}" -c "GRANT USAGE, CREATE ON SCHEMA public TO \"${POSTGRES_USER}\""
 
 # Grant database-level privileges (CONNECT, CREATE, TEMP)
-psql --username "postgres" -c "GRANT ALL PRIVILEGES ON DATABASE \"${APP_DB}\" TO \"${APP_USER}\""
+psql --username "postgres" -c "GRANT ALL PRIVILEGES ON DATABASE \"${POSTGRES_DB}\" TO \"${POSTGRES_USER}\""
