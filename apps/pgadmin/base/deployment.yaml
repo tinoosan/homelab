@@ -15,18 +15,18 @@ spec:
         app: pgadmin
     spec:
       containers:
-        - name: pgadmin
-          image: dpage/pgadmin4:8.12
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-          envFrom:
-            - secretRef:
-                name: pgadmin-credentials
-          volumeMounts:
-            - name: pgadmin
-              mountPath: /var/lib/pgadmin
+      - name: pgadmin
+        image: dpage/pgadmin4:8.12
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80
+        envFrom:
+          - secretRef:
+              name: pgadmin-credentials
+        volumeMounts:
+          - name: pgadmin
+            mountPath: /var/lib/pgadmin
   volumeClaimTemplates:
     - metadata: { name: pgadmin }
       spec:
