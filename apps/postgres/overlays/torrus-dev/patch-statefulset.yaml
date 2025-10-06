@@ -29,11 +29,6 @@ spec:
                 secretKeyRef:
                   name: pg-secret
                   key: POSTGRES_PASSWORD
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pg-secret
-                  key: POSTGRES_PASSWORD
           volumeMounts:
             - name: torrus-dev
               mountPath: /var/lib/postgresql/data
