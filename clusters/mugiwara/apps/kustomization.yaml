@@ -14,8 +14,7 @@ resources:
   - ../../../apps/postgres/overlays/torrus-dev
   - ../../../apps/postgres/overlays/ledger-dev
   - ../../../apps/postgres/overlays/keycloak
-  - ../../../apps/pgadmin/overlays/torrus-dev
-  - ../../../apps/pgadmin/overlays/ledger-dev
+  - ../../../apps/pgadmin/overlays/prod
 
 
 patchesStrategicMerge:
