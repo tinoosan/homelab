@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: torrus-dev
 resources:
   - ../../base
-  - secret-app-creds.yaml
+  - secret.yaml
 configMapGenerator:
   - name: pg-init
     files:
