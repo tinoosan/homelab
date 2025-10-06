@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: pgadmin.dev.jamaguchi.xyz
+    - host: pgadmin.jamaguchi.xyz
       http:
         paths:
           - path: /
