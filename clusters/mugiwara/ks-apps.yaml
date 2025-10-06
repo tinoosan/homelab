@@ -19,10 +19,6 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: torrus
-      namespace: torrus-dev
-    - apiVersion: apps/v1
-      kind: Deployment
       name: aria2
       namespace: torrus-dev
     - apiVersion: apps/v1
