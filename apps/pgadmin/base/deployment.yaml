@@ -25,12 +25,9 @@ spec:
           - secretRef:
               name: pgadmin-credentials
         volumeMounts:
-          - name: pgadmin
+          - name: pgadmin-data
             mountPath: /var/lib/pgadmin
-  volumeClaimTemplates:
-    - metadata: { name: pgadmin }
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 2Gi
+      volumes:
+          - name: pgadmin-data
+            persistentVolumeClaim:
+              claimName: pgadmin-data
