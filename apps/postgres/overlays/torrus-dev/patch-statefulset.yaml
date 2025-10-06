@@ -14,21 +14,21 @@ spec:
             limits:
               memory: "512Mi"
           env:
-            - name: APP_DB
+            - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
                   name: pg-secret
-                  key: APP_DB
-            - name: APP_USER
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: pg-secret
-                  key: APP_USER
-            - name: APP_PASSWORD
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: pg-secret
-                  key: APP_PASSWORD
+                  key: POSTGRES_PASSWORD
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
