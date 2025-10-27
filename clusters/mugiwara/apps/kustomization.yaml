@@ -6,7 +6,7 @@ resources:
   - ../../../infra/longhorn
   - ../../../infra/keycloak/base
   - ../../../infra/metallb/base
-  - ../../../apps/aria2/overlays/dev
+  - ../../../apps/aria2/overlays/prod
   - ../../../apps/ledger/overlays/dev
   - ../../../apps/n8n/overlays/prod
   - ../../../apps/it-tools/overlays/prod
