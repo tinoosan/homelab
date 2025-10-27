@@ -23,8 +23,8 @@ spec:
       namespace: torrus-dev
     - apiVersion: apps/v1
       kind: Deployment
-      name: torrus
-      namespace: torrus-dev
+      name: n8n
+      namespace: n8n
     - apiVersion: apps/v1
       kind: Deployment
       name: it-tools
