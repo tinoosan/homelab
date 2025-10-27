@@ -20,7 +20,7 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: aria2
-      namespace: torrus-dev
+      namespace: aria2
     - apiVersion: apps/v1
       kind: Deployment
       name: n8n
