@@ -23,6 +23,10 @@ spec:
       namespace: torrus-dev
     - apiVersion: apps/v1
       kind: Deployment
+      name: torrus
+      namespace: torrus-dev
+    - apiVersion: apps/v1
+      kind: Deployment
       name: it-tools
       namespace: tools
     - apiVersion: apps/v1
@@ -33,6 +37,10 @@ spec:
       kind: Deployment
       name: keycloak
       namespace: keycloak
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: pgadmin
+      namespace: tools
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: n8n.dev.jamaguchi.xyz   # patched per env if needed
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: n8n
+                port:
+                  name: http
+

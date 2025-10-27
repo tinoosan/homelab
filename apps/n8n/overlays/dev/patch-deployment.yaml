@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        homelab.dev/rollout-nonce: "2025-10-01-01"
+    spec:
+      containers:
+        - name: n8n
+          imagePullPolicy: Always
+
