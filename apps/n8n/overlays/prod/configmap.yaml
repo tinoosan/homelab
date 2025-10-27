@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: n8n-config
 data:
-  N8N_HOST: n8n.dev.jamaguchi.xyz
+  N8N_HOST: n8n.jamaguchi.xyz
   N8N_PORT: "5678"
-  N8N_PROTOCOL: http
-  WEBHOOK_URL: http://n8n.dev.jamaguchi.xyz/
+  N8N_PROTOCOL: https
+  WEBHOOK_URL: https://n8n.jamaguchi.xyz/
   GENERIC_TIMEZONE: Europe/London
   TZ: Europe/London
 
