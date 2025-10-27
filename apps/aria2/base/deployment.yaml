@@ -23,10 +23,6 @@ spec:
           hostPath:
             path: /media/movies
             type: DirectoryOrCreate
-        - name: aria2-config
-          configMap:
-            name: aria2-config
-            defaultMode: 0644
       initContainers:
         - name: fix-permissions
           image: busybox:1.36
@@ -45,8 +41,6 @@ spec:
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
-            - name: aria2-config
-              mountPath: /config
       containers:
         - name: aria2
           image: p3terx/aria2-pro:latest
@@ -81,5 +75,3 @@ spec:
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
-            - name: aria2-config
-              mountPath: /config
