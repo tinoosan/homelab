@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-01"
+        homelab.dev/rollout-nonce: "2025-10-27-02"
     spec:
       securityContext:
         fsGroup: 65532
@@ -36,9 +36,9 @@ spec:
       containers:
         - name: aria2
           securityContext:
-            runAsUser: 65532
-            runAsGroup: 65532
-            runAsNonRoot: true
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
           env:
             - name: PUID
               value: "65532"
