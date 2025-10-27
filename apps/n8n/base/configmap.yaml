@@ -16,6 +16,6 @@ data:
   # Use a small read pool for SQLite per n8n guidance
   DB_SQLITE_POOL_SIZE: "5"
   # For security, block env access in nodes unless intentionally needed
-  N8N_BLOCK_ENV_ACCESS_IN_NODE: "true"
+  N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
   # Aria2 RPC endpoint inside the cluster
   ARIA2_RPC_URL: http://aria2.aria2:6800/jsonrpc

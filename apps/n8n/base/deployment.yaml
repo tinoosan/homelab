@@ -14,7 +14,7 @@ spec:
       labels:
         app: n8n
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-02"
+        homelab.dev/rollout-nonce: "2025-10-27-03"
     spec:
       securityContext:
         runAsUser: 1000
