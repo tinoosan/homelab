@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-01-01"
+        homelab.dev/rollout-nonce: "2025-10-27-01"
     spec:
       securityContext:
         runAsUser: 1000
@@ -29,4 +29,3 @@ spec:
       containers:
         - name: n8n
           imagePullPolicy: IfNotPresent
-
