@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        rollout/nonce: "2025-09-07T20:00:34Z"
+        homelab.dev/rollout-nonce: "2025-10-27-01"
     spec:
       nodeSelector:
         kubernetes.io/hostname: mugiwara
@@ -22,11 +22,17 @@ spec:
             - name: PGID
               value: "65532"
           volumeMounts:
-            - name: aria2-data
-              mountPath: /data
+            - name: downloads-tv
+              mountPath: /downloads/tv
+            - name: downloads-movies
+              mountPath: /downloads/movies
 
       volumes:
-        - name: aria2-data
+        - name: downloads-tv
           hostPath:
-            path: /media/test
-            type: Directory
+            path: /media/test/tv
+            type: DirectoryOrCreate
+        - name: downloads-movies
+          hostPath:
+            path: /media/test/movies
+            type: DirectoryOrCreate

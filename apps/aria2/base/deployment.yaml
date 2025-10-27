@@ -44,10 +44,16 @@ spec:
             - name: DISK_CACHE
               value: "64M"
           volumeMounts:
-            - name: aria2-data
-              mountPath: /data
+            - name: downloads-tv
+              mountPath: /downloads/tv
+            - name: downloads-movies
+              mountPath: /downloads/movies
       volumes:
-        - name: aria2-data
+        - name: downloads-tv
           hostPath:
-            path: /media
-            type: Directory
+            path: /media/tv
+            type: DirectoryOrCreate
+        - name: downloads-movies
+          hostPath:
+            path: /media/movies
+            type: DirectoryOrCreate
