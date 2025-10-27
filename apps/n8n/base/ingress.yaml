@@ -5,14 +5,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: n8n.dev.jamaguchi.xyz   # patched per env if needed
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: n8n
-                port:
-                  name: http
-
+  - host: n8n.jamaguchi.xyz   # patched per env if needed
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: n8n
+              port:
+                name: http

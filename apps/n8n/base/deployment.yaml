@@ -14,6 +14,23 @@ spec:
       labels:
         app: n8n
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      initContainers:
+        - name: fix-permissions
+          image: busybox:1.36
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
+          command: ["sh","-c","mkdir -p /home/node/.n8n && chown -R 1000:1000 /home/node/.n8n"]
+          volumeMounts:
+            - name: data
+              mountPath: /home/node/.n8n
       containers:
         - name: n8n
           image: docker.io/n8nio/n8n:latest
@@ -23,9 +40,9 @@ spec:
               containerPort: 5678
           envFrom:
             - configMapRef:
-                name: n8n-config
+              name: n8n-config
             - secretRef:
-                name: n8n-secrets
+              name: n8n-secrets
           volumeMounts:
             - name: data
               mountPath: /home/node/.n8n
@@ -39,4 +56,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: n8n-data
-

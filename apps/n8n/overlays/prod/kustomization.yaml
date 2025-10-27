@@ -3,10 +3,3 @@ kind: Kustomization
 namespace: n8n
 resources:
   - ../../base
-  - namespace.yaml
-  - configmap.yaml
-  - secret.yaml
-patchesStrategicMerge:
-  - patch-deployment.yaml
-  - patch-ingress.yaml
-
