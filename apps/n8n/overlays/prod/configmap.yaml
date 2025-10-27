@@ -9,4 +9,11 @@ data:
   WEBHOOK_URL: https://n8n.jamaguchi.xyz/
   GENERIC_TIMEZONE: Europe/London
   TZ: Europe/London
-
+  # Recommendations from runtime warnings
+  N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+  N8N_RUNNERS_ENABLED: "true"
+  N8N_GIT_NODE_DISABLE_BARE_REPOS: "true"
+  # Use a small read pool for SQLite per n8n guidance
+  DB_SQLITE_POOL_SIZE: "5"
+  # For security, block env access in nodes unless intentionally needed
+  N8N_BLOCK_ENV_ACCESS_IN_NODE: "true"
