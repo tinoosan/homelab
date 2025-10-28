@@ -3,3 +3,9 @@ kind: Kustomization
 resources:
   - service.yaml
   - deployment.yaml
+configMapGenerator:
+  - name: aria2-hooks
+    files:
+      - on-download-complete.sh=apps/aria2/scripts/on-download-complete.sh
+generatorOptions:
+  disableNameSuffixHash: true
