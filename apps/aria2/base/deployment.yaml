@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: aria2
+      annotations:
+        homelab.dev/rollout-nonce: "2025-10-27-04"
     spec:
       volumes:
         - name: downloads-tv
@@ -70,6 +72,8 @@ spec:
               value: "true"
             - name: DISK_CACHE
               value: "64M"
+            - name: DISABLE_DELETE_EMPTY_DIR
+              value: "true"
           volumeMounts:
             - name: downloads-tv
               mountPath: /downloads/tv
