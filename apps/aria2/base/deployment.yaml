@@ -25,12 +25,6 @@ spec:
           hostPath:
             path: /media/test/movies
             type: DirectoryOrCreate
-        - name: aria2-config
-          emptyDir: {}
-        - name: aria2-hooks
-          configMap:
-            name: aria2-hooks
-            defaultMode: 0755
       initContainers:
         - name: fix-permissions
           image: busybox:1.36
@@ -41,21 +35,14 @@ spec:
             - sh
             - -c
             - >-
-              mkdir -p /downloads/tv /downloads/movies /config/hooks &&
+              mkdir -p /downloads/tv /downloads/movies &&
               chown -R 65532:65532 /downloads/tv /downloads/movies &&
-              chmod -R 775 /downloads/tv /downloads/movies &&
-              grep -q "on-download-complete=/config/hooks/on-download-complete.sh" /config/aria2.conf || \
-              echo "on-download-complete=/config/hooks/on-download-complete.sh" >> /config/aria2.conf
+              chmod -R 775 /downloads/tv /downloads/movies
           volumeMounts:
             - name: downloads-tv
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
-            - name: aria2-config
-              mountPath: /config
-            - name: aria2-hooks
-              mountPath: /config/hooks/on-download-complete.sh
-              subPath: on-download-complete.sh
       containers:
         - name: aria2
           image: p3terx/aria2-pro:latest
@@ -92,5 +79,3 @@ spec:
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
-            - name: aria2-config
-              mountPath: /config
