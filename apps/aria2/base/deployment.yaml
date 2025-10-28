@@ -19,11 +19,11 @@ spec:
       volumes:
         - name: downloads-tv
           hostPath:
-            path: /media/test/tv
+            path: /mnt/gdrive/Videos/TV
             type: DirectoryOrCreate
         - name: downloads-movies
           hostPath:
-            path: /media/test/movies
+            path: /mnt/gdrive/Videos/Movies
             type: DirectoryOrCreate
       initContainers:
         - name: fix-permissions
