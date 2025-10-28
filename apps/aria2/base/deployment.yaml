@@ -14,16 +14,16 @@ spec:
       labels:
         app: aria2
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-04"
+        homelab.dev/rollout-nonce: "2025-10-27-05"
     spec:
       volumes:
         - name: downloads-tv
           hostPath:
-            path: /media/tv
+            path: /media/test/tv
             type: DirectoryOrCreate
         - name: downloads-movies
           hostPath:
-            path: /media/movies
+            path: /media/test/movies
             type: DirectoryOrCreate
       initContainers:
         - name: fix-permissions
