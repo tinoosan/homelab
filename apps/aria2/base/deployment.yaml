@@ -14,7 +14,7 @@ spec:
       labels:
         app: aria2
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-07"
+        homelab.dev/rollout-nonce: "2025-10-27-06"
     spec:
       volumes:
         - name: downloads-tv
@@ -41,13 +41,11 @@ spec:
             - sh
             - -c
             - >-
-              set -e;
-              mkdir -p /downloads/tv /downloads/movies /config/hooks;
-              chown -R 65532:65532 /downloads/tv /downloads/movies;
-              chmod -R 775 /downloads/tv /downloads/movies;
-              if ! grep -q "^on-download-complete=/config/hooks/on-download-complete.sh" /config/aria2.conf 2>/dev/null; then
-                echo "on-download-complete=/config/hooks/on-download-complete.sh" >> /config/aria2.conf;
-              fi
+              mkdir -p /downloads/tv /downloads/movies /config/hooks &&
+              chown -R 65532:65532 /downloads/tv /downloads/movies &&
+              chmod -R 775 /downloads/tv /downloads/movies &&
+              grep -q "on-download-complete=/config/hooks/on-download-complete.sh" /config/aria2.conf || \
+              echo "on-download-complete=/config/hooks/on-download-complete.sh" >> /config/aria2.conf
           volumeMounts:
             - name: downloads-tv
               mountPath: /downloads/tv
