@@ -14,7 +14,7 @@ spec:
       labels:
         app: aria2
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-06"
+        homelab.dev/rollout-nonce: "2025-10-29-01"
     spec:
       volumes:
         - name: downloads-tv
