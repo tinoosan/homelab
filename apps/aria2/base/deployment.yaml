@@ -74,8 +74,6 @@ spec:
               value: "64M"
             - name: DISABLE_DELETE_EMPTY_DIR
               value: "true"
-            - name: EXTRA_ARGS
-              value: "--file-allocation=none"
           volumeMounts:
             - name: downloads-tv
               mountPath: /downloads/tv
