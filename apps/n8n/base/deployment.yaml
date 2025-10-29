@@ -14,7 +14,7 @@ spec:
       labels:
         app: n8n
       annotations:
-        homelab.dev/rollout-nonce: "2025-10-27-03"
+        homelab.dev/rollout-nonce: "2025-10-29-02"
     spec:
       securityContext:
         runAsUser: 1000
@@ -33,6 +33,10 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /home/node/.n8n
+            - name: media-tv
+              mountPath: /media/tv
+            - name: media-movies
+              mountPath: /media/movies
       containers:
         - name: n8n
           image: docker.io/n8nio/n8n:latest
@@ -58,3 +62,11 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: n8n-data
+        - name: media-tv
+          hostPath:
+            path: /mnt/gdrive/Videos/TV
+            type: DirectoryOrCreate
+        - name: media-movies
+          hostPath:
+            path: /mnt/gdrive/Videos/Movies
+            type: DirectoryOrCreate
