@@ -25,6 +25,10 @@ spec:
           hostPath:
             path: /mnt/gdrive/Videos/Movies
             type: DirectoryOrCreate
+        - name: aria2-config
+          hostPath:
+            path: /srv/aria2/config
+            type: DirectoryOrCreate
       initContainers:
         - name: fix-permissions
           image: busybox:1.36
@@ -79,3 +83,5 @@ spec:
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
+            - name: aria2-config
+              mountPath: /config
