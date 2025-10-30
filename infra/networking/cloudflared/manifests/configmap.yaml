@@ -9,14 +9,12 @@ data:
     ingress:
       # Apps with Ingress
       - hostname: n8n.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-      - hostname: tools.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+        service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
       - hostname: ledger.dev.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+        service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
       - hostname: pgadmin.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+        service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
       - hostname: keycloak.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+        service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
       # Default 404 catch-all
-      - service: http_status:404
+      - service: https_status:404
