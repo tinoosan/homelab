@@ -22,8 +22,7 @@ spec:
         image: quay.io/keycloak/keycloak:latest
         imagePullPolicy: IfNotPresent
         args:
-            - start
-            - --http-enabled=true
+            - start-dev
         ports:
           - name: http
             containerPort: 8080
