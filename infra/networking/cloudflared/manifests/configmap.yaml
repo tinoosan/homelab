@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: networking
+data:
+  config.yaml: |
+    # Cloudflared ingress mappings. Public hostnames → cluster ingress
+    ingress:
+      - hostname: n8n.jamaguchi.xyz
+        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+      - hostname: aria2.jamaguchi.xyz
+        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+      - service: http_status:404
