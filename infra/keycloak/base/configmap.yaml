@@ -8,3 +8,4 @@ data:
   KC_METRICS_ENABLED: "true"
   KC_PROXY_HEADERS: xforwarded
   KC_HOSTNAME_STRICT_HTTPS: "true"
+  KC_PROXY: edge

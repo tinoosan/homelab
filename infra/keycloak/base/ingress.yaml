@@ -4,8 +4,6 @@ metadata:
   name: keycloak
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header X-Forwarded-Proto https;
 spec:
   ingressClassName: nginx
   rules:
