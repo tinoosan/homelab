@@ -24,7 +24,6 @@ spec:
         args:
             - start
             - --http-enabled=true
-            - --optimized
         ports:
           - name: http
             containerPort: 8080
