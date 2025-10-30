@@ -22,7 +22,7 @@ spec:
         image: quay.io/keycloak/keycloak:latest
         imagePullPolicy: IfNotPresent
         args:
-            - start-dev
+            - start
             - --http-enabled=true
         ports:
           - name: http

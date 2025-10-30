@@ -4,8 +4,10 @@ metadata:
   name: keycloak-config
 data:
   KC_HOSTNAME: keycloak.jamaguchi.xyz
+  KC_HOSTNAME_ADMIN: kc-admin.jamaguchi.xyz
   KC_HEALTH_ENABLED: "true"
   KC_METRICS_ENABLED: "true"
   KC_PROXY_HEADERS: xforwarded
   KC_HOSTNAME_STRICT_HTTPS: "true"
   KC_PROXY: edge
+  KC_FRONTEND_URL: https://keycloak.jamaguchi.xyz

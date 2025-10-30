@@ -9,5 +9,5 @@ data:
   MAX_BODY_BYTES: "1048576"
   # RS256/JWKS (recommended)
   JWT_JWKS_URL: http://keycloak.keycloak.svc.cluster.local/realms/homelab/protocol/openid-connect/certs
-  JWT_ISSUER: http://keycloak.jamaguchi.xyz/realms/homelab
+  JWT_ISSUER: https://keycloak.jamaguchi.xyz/realms/homelab
   JWT_AUDIENCE: ledger-api

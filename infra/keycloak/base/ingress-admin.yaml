@@ -1,14 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: keycloak
+  name: keycloak-admin
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # Basic rate limiting for the admin console
+    nginx.ingress.kubernetes.io/limit-rps: "5"
+    nginx.ingress.kubernetes.io/limit-burst-multiplier: "3"
+    nginx.ingress.kubernetes.io/limit-connections: "20"
 spec:
   ingressClassName: nginx
   rules:
-  - host: keycloak.jamaguchi.xyz
+  - host: kc-admin.jamaguchi.xyz
     http:
       paths:
       - path: /
@@ -18,3 +22,4 @@ spec:
             name: keycloak
             port:
               name: http
+
