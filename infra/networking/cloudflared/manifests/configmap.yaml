@@ -16,5 +16,7 @@ data:
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       - hostname: keycloak.jamaguchi.xyz
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+      - hostname: grafana.jamaguchi.xyz
+        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       # Default 404 catch-all
       - service: http_status:404

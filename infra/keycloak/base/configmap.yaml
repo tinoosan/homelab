@@ -6,4 +6,5 @@ data:
   KC_HOSTNAME: keycloak.jamaguchi.xyz
   KC_HEALTH_ENABLED: "true"
   KC_METRICS_ENABLED: "true"
-
+  KC_PROXY_HEADERS: xforwarded
+  KC_HOSTNAME_STRICT_HTTPS: "true"
