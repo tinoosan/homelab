@@ -14,6 +14,7 @@ This repo documents and version-controls my personal homelab infrastructure. It�
   - aria2 (dev overlay)
   - it-tools (prod overlay) — Ingress `tools.jamaguchi.xyz`
   - Plex (prod overlay)
+  - Keycloak (prod) — Public `keycloak.jamaguchi.xyz`, Admin `kc-admin.jamaguchi.xyz`
   - Postgres (torrus-dev)
   - pgAdmin (torrus-dev) — Ingress `pgadmin.dev.jamaguchi.xyz`
   - Monitoring: kube-prometheus-stack (Grafana Ingress `grafana.dev.jamaguchi.xyz`)
@@ -21,6 +22,7 @@ This repo documents and version-controls my personal homelab infrastructure. It�
 ## 📚 Skills Demonstrated
 
 - Kubernetes workloads, storage, and Ingress
+- Identity and OIDC with Keycloak (hostname v2, split admin/public)
 - GitOps workflows with FluxCD (PRs → `main` → reconcile)
 - Bare‑metal networking with MetalLB and ingress-nginx
 - Observability with kube‑prometheus‑stack
@@ -34,6 +36,13 @@ This repo documents and version-controls my personal homelab infrastructure. It�
     - `192.168.0.110 pgadmin.dev.jamaguchi.xyz`
     - `192.168.0.110 grafana.dev.jamaguchi.xyz`
 - Recommended: wildcard DNS `*.dev.jamaguchi.xyz → 192.168.0.110` (see issue #160)
+
+Public access via Cloudflared
+- Public hosts are proxied through Cloudflare → Cloudflared → ingress-nginx.
+- Keycloak endpoints:
+  - Public OIDC: `https://keycloak.jamaguchi.xyz` (issuer/realms)
+  - Admin console: `https://kc-admin.jamaguchi.xyz` (protect via Cloudflare Access)
+  - Implementation details: see `infra/keycloak/README.md:1`.
 
 ## 🧭 Roadmap (selected)
 
