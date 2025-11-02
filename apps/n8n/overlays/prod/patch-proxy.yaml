@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+spec:
+  template:
+    spec:
+      containers:
+        - name: n8n
+          env:
+            - name: HTTP_PROXY
+              value: http://gluetun.n8n.svc.cluster.local:8888
+            - name: HTTPS_PROXY
+              value: http://gluetun.n8n.svc.cluster.local:8888
+            - name: NO_PROXY
+              value: localhost,127.0.0.1,::1,.svc,.svc.cluster.local

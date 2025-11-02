@@ -4,3 +4,5 @@ namespace: n8n
 resources:
   - ../../base
   - namespace.yaml
+patchesStrategicMerge:
+  - patch-proxy.yaml
