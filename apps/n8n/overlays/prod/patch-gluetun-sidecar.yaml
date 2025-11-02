@@ -15,6 +15,12 @@ spec:
           image: qmcgaw/gluetun
           imagePullPolicy: IfNotPresent
           securityContext:
+            # Override pod defaults to run Gluetun as root with NET_ADMIN
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
+            allowPrivilegeEscalation: true
+            privileged: true
             capabilities:
               add: ["NET_ADMIN"]
           env:
