@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: n8n
 resources:
   - ../../base
-  - secret.yaml
