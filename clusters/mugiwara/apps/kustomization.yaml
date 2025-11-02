@@ -5,7 +5,6 @@ resources:
   - ../../../apps/aria2/overlays/prod
   - ../../../apps/ledger/overlays/dev
   - ../../../apps/n8n/overlays/prod
-  - ../../../apps/gluetun/overlays/n8n
   - ../../../apps/it-tools/overlays/prod
   - ../../../apps/plex/overlays/prod
   - ../../../apps/postgres/overlays/ledger-dev

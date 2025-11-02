@@ -4,6 +4,5 @@ namespace: n8n
 resources:
   - ../../base
   - namespace.yaml
-  - networkpolicy-egress-vpn.yaml
 patchesStrategicMerge:
-  - patch-proxy.yaml
+  - patch-gluetun-sidecar.yaml
