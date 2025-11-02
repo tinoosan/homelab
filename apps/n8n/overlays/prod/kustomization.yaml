@@ -4,6 +4,6 @@ namespace: n8n
 resources:
   - ../../base
   - namespace.yaml
+  - networkpolicy-egress-vpn.yaml
 patchesStrategicMerge:
   - patch-proxy.yaml
-  - networkpolicy-egress-vpn.yaml
