@@ -25,6 +25,10 @@ spec:
           hostPath:
             path: /mnt/gdrive/Videos/Movies
             type: DirectoryOrCreate
+        - name: downloads-anime
+          hostPath:
+            path: /mnt/gdrive/Videos/Anime
+            type: DirectoryOrCreate
         - name: aria2-config
           hostPath:
             path: /srv/aria2/config
@@ -39,14 +43,16 @@ spec:
             - sh
             - -c
             - >-
-              mkdir -p /downloads/tv /downloads/movies &&
-              chown -R 65532:65532 /downloads/tv /downloads/movies &&
-              chmod -R 775 /downloads/tv /downloads/movies
+              mkdir -p /downloads/tv /downloads/movies /downloads/anime &&
+              chown -R 65532:65532 /downloads/tv /downloads/movies /downloads/anime &&
+              chmod -R 775 /downloads/tv /downloads/movies /downloads/anime
           volumeMounts:
             - name: downloads-tv
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
+            - name: downloads-anime
+              mountPath: /downloads/anime
       containers:
         - name: aria2
           image: p3terx/aria2-pro:latest
@@ -83,5 +89,7 @@ spec:
               mountPath: /downloads/tv
             - name: downloads-movies
               mountPath: /downloads/movies
+            - name: downloads-anime
+              mountPath: /downloads/anime
             - name: aria2-config
               mountPath: /config
