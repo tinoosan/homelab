@@ -6,6 +6,9 @@ data:
   N8N_HOST: n8n.jamaguchi.xyz
   N8N_PORT: "5678"
   N8N_PROTOCOL: https
+  N8N_TRUST_PROXY: "true"
+  N8N_DIAGNOSTICS_ENABLED: "false"
+  N8N_TELEMETRY_ENABLED: "false"
   WEBHOOK_URL: https://n8n.jamaguchi.xyz/
   GENERIC_TIMEZONE: Europe/London
   TZ: Europe/London

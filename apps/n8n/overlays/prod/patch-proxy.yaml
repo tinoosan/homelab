@@ -21,8 +21,3 @@ spec:
               value: http://gluetun.n8n.svc.cluster.local:8888
             - name: no_proxy
               value: localhost,127.0.0.1,::1,.svc,.svc.cluster.local
-            # Force Node.js to honor proxy for all http(s) modules
-            - name: NODE_OPTIONS
-              value: --require global-agent/bootstrap
-            - name: GLOBAL_AGENT_HTTP_PROXY
-              value: http://gluetun.n8n.svc.cluster.local:8888
