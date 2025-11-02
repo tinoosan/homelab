@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
 patchesStrategicMerge:
   - patch-proxy.yaml
+  - networkpolicy-egress-vpn.yaml
