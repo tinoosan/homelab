@@ -23,6 +23,8 @@ spec:
               value: Europe/London
             - name: VPN_SERVICE_PROVIDER
               value: nordvpn
+            - name: VPN_TYPE
+              value: openvpn
             - name: HTTPPROXY
               value: "on"
             - name: VPN_PORT_FORWARDING

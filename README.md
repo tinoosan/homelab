@@ -15,6 +15,7 @@ This repo documents and version-controls my personal homelab infrastructure. It�
   - it-tools (prod overlay) — Ingress `tools.jamaguchi.xyz`
   - Plex (prod overlay)
   - Keycloak (prod) — Public `keycloak.jamaguchi.xyz`, Admin `kc-admin.jamaguchi.xyz`
+  - Gluetun (n8n) — Internal HTTP proxy for VPN egress
   - Postgres (torrus-dev)
   - pgAdmin (torrus-dev) — Ingress `pgadmin.dev.jamaguchi.xyz`
   - Monitoring: kube-prometheus-stack (Grafana Ingress `grafana.dev.jamaguchi.xyz`)
@@ -23,6 +24,7 @@ This repo documents and version-controls my personal homelab infrastructure. It�
 
 - Kubernetes workloads, storage, and Ingress
 - Identity and OIDC with Keycloak (hostname v2, split admin/public)
+- VPN egress via Gluetun and per‑app proxying
 - GitOps workflows with FluxCD (PRs → `main` → reconcile)
 - Bare‑metal networking with MetalLB and ingress-nginx
 - Observability with kube‑prometheus‑stack
