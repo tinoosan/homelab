@@ -12,6 +12,11 @@ spec:
       labels:
         app: gluetun
     spec:
+      volumes:
+        - name: dev-net-tun
+          hostPath:
+            path: /dev/net/tun
+            type: CharDevice
       containers:
         - name: gluetun
           image: qmcgaw/gluetun
@@ -37,3 +42,6 @@ spec:
           ports:
             - containerPort: 8888
               name: proxy
+          volumeMounts:
+            - name: dev-net-tun
+              mountPath: /dev/net/tun
