@@ -23,5 +23,5 @@ spec:
             - name: MB_DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: metabase-db
-                  key: MB_DB_PASS
+                  name: pg-secret
+                  key: POSTGRES_PASSWORD

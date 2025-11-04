@@ -4,6 +4,5 @@ namespace: metabase
 resources:
   - ../../base
   - namespace.yaml
-  - secret-db.yaml
 patchesStrategicMerge:
   - patch-db.yaml
