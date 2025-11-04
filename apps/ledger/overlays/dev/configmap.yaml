@@ -5,7 +5,7 @@ metadata:
 data:
   LOG_FORMAT: json
   LOG_LEVEL: DEBUG
-  DEV_SEED: "true"                  
+  DEV_SEED: "false"                 
   MAX_BODY_BYTES: "1048576"
   # RS256/JWKS (recommended)
   JWT_JWKS_URL: http://keycloak.keycloak.svc.cluster.local/realms/internal/protocol/openid-connect/certs
