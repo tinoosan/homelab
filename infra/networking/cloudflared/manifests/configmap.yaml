@@ -24,5 +24,7 @@ data:
           noTLSVerify: true
       - hostname: grafana.jamaguchi.xyz
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+      - hostname: homarr.jamaguchi.xyz
+        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       # Default 404 catch-all
       - service: http_status:404

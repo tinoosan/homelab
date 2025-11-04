@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homarr
+  labels:
+    app: homarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homarr
+  template:
+    metadata:
+      labels:
+        app: homarr
+      annotations:
+        homelab.dev/rollout-nonce: "2025-11-02-01"
+    spec:
+      containers:
+        - name: homarr
+          image: ghcr.io/ajnart/homarr:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 7575
+          env:
+            - name: TZ
+              value: Europe/London
+          volumeMounts:
+            - name: homarr-data
+              mountPath: /app/data/configs
+              subPath: configs
+            - name: homarr-data
+              mountPath: /app/public/icons
+              subPath: icons
+            - name: homarr-data
+              mountPath: /data
+              subPath: data
+      volumes:
+        - name: homarr-data
+          persistentVolumeClaim:
+            claimName: homarr-data
+
