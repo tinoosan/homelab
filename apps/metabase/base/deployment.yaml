@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metabase
+  labels:
+    app: metabase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metabase
+  template:
+    metadata:
+      labels:
+        app: metabase
+      annotations:
+        homelab.dev/rollout-nonce: "2025-11-04-01"
+    spec:
+      containers:
+        - name: metabase
+          image: metabase/metabase:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: JAVA_TIMEZONE
+              value: Europe/London
+            - name: MB_SITE_URL
+              value: https://metabase.jamaguchi.xyz
+            # Persist the default H2 DB to PVC (simple homelab setup)
+            - name: MB_DB_FILE
+              value: /metabase-data/metabase.db
+          volumeMounts:
+            - name: data
+              mountPath: /metabase-data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: metabase-data
+

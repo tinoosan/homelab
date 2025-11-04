@@ -11,6 +11,7 @@ resources:
   - ../../../apps/postgres/overlays/keycloak
   - ../../../apps/pgadmin/overlays/prod
   - ../../../apps/homarr/overlays/prod
+  - ../../../apps/metabase/overlays/prod
 
 
 patchesStrategicMerge:

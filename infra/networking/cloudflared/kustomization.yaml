@@ -3,5 +3,11 @@ kind: Kustomization
 namespace: networking
 resources:
   - manifests/namespace.yaml
-  - manifests/configmap.yaml
   - manifests/deployment.yaml
+configMapGenerator:
+  - name: cloudflared-config
+    namespace: networking
+    files:
+      - config.yaml=./config/config.yaml
+generatorOptions:
+  disableNameSuffixHash: false

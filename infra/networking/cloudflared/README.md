@@ -4,7 +4,7 @@ Publish existing Kubernetes ingress (nginx) to the public internet via Cloudflar
 
 ## What this includes
 - Namespace `networking`
-- ConfigMap `cloudflared-config` with ingress hostname routing to the in-cluster nginx controller
+- ConfigMap `cloudflared-config` generated from `config/config.yaml` (name is hashed by Kustomize)
 - Deployment `cloudflared` running in token mode and reading config from the ConfigMap
 - Root infra kustomization reference (see below)
 
@@ -27,8 +27,11 @@ Publish existing Kubernetes ingress (nginx) to the public internet via Cloudflar
 
 ## Files
 - `manifests/namespace.yaml`: creates `networking` namespace.
-- `manifests/configmap.yaml`: cloudflared config with public hostnames routing to nginx controller.
+- `config/config.yaml`: ingress hostname routing to nginx controller.
 - `manifests/deployment.yaml`: cloudflared token-run deployment.
+
+## Config changes trigger rollout automatically
+The ConfigMap is generated with a content hash in its name. When `config/config.yaml` changes, Kustomize updates the ConfigMap name and Deployment volume reference, which changes the Pod template and triggers a rolling restart of `cloudflared` automatically after Flux applies.
 
 ## Secret (not in Git)
 If you want a template example (not applied by GitOps), see `manifests/secret.example.yaml`.

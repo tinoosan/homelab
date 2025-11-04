@@ -1,0 +1,25 @@
+# Cloudflared ingress mappings. Public hostnames → cluster ingress
+ingress:
+  # Apps with Ingress
+  - hostname: n8n.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - hostname: ledger.dev.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - hostname: pgadmin.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - hostname: keycloak.jamaguchi.xyz
+    service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
+    originRequest:
+      noTLSVerify: true
+  - hostname: kc-admin.jamaguchi.xyz
+    service: https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443
+    originRequest:
+      noTLSVerify: true
+  - hostname: grafana.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - hostname: homarr.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  - hostname: metabase.jamaguchi.xyz
+    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
+  # Default 404 catch-all
+  - service: http_status:404
