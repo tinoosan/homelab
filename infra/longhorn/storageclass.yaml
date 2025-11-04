@@ -11,4 +11,7 @@ volumeBindingMode: Immediate
 parameters:
   numberOfReplicas: "2"
   staleReplicaTimeout: "30"
-
+  # Ensure new volumes are formatted as ext4, and
+  # force mkfs to proceed even if stale signatures exist.
+  fsType: ext4
+  mkfsParams: "-F -m 0"
