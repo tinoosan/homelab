@@ -37,6 +37,10 @@ spec:
       kind: Deployment
       name: pgadmin
       namespace: tools
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: excalidraw
+      namespace: tools
   sourceRef:
     kind: GitRepository
     name: flux-system

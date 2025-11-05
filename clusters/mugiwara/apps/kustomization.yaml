@@ -13,6 +13,7 @@ resources:
   - ../../../apps/homarr/overlays/prod
   - ../../../apps/metabase/overlays/prod
   - ../../../apps/postgres/overlays/metabase
+  - ../../../apps/excalidraw/overlays/prod
 
 
 patchesStrategicMerge:
