@@ -42,8 +42,13 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+            - name: plex-media
+              mountPath: /media
       volumes:
+        - name: plex-media
+          hostPath:
+            path: /mnt/gdrive/Videos
+            type: Directory
         - name: config
           persistentVolumeClaim:
             claimName: sonarr-config
-
