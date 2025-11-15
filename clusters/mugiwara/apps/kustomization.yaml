@@ -16,6 +16,7 @@ resources:
   - ../../../apps/excalidraw/overlays/prod
   - ../../../apps/sonarr/overlays/prod
   - ../../../apps/prowlarr/overlays/prod
+  - ../../../apps/radarr/overlays/prod
 
 
 patchesStrategicMerge:

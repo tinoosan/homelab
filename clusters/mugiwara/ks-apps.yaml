@@ -49,6 +49,10 @@ spec:
       kind: Deployment
       name: prowlarr
       namespace: prowlarr
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: radarr
+      namespace: radarr
   sourceRef:
     kind: GitRepository
     name: flux-system
