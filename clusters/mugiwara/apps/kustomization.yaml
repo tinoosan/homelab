@@ -15,6 +15,7 @@ resources:
   - ../../../apps/postgres/overlays/metabase
   - ../../../apps/excalidraw/overlays/prod
   - ../../../apps/sonarr/overlays/prod
+  - ../../../apps/prowlarr/overlays/prod
 
 
 patchesStrategicMerge:

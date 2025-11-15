@@ -45,6 +45,10 @@ spec:
       kind: Deployment
       name: sonarr
       namespace: sonarr
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: prowlarr
+      namespace: prowlarr
   sourceRef:
     kind: GitRepository
     name: flux-system
