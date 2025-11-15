@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+spec:
+  template:
+    spec:
+      volumes:
+        - name: dev-net-tun
+          hostPath:
+            path: /dev/net/tun
+            type: CharDevice
+      containers:
+        - name: gluetun
+          image: qmcgaw/gluetun
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            runAsNonRoot: false
+            allowPrivilegeEscalation: true
+            privileged: true
+            capabilities:
+              add: ["NET_ADMIN"]
+          env:
+            - name: TZ
+              value: Europe/London
+            - name: VPN_SERVICE_PROVIDER
+              value: nordvpn
+            - name: VPN_TYPE
+              value: openvpn
+            - name: DNS_KEEP_NAMESERVER
+              value: "on"
+            - name: DOT
+              value: "off"
+            - name: FIREWALL_OUTBOUND_SUBNETS
+              value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+            - name: FIREWALL_INPUT_PORTS
+              value: "9696"
+            - name: HEALTH_VPN
+              value: "on"
+          envFrom:
+            - secretRef:
+                name: vpn-secret
+          volumeMounts:
+            - name: dev-net-tun
+              mountPath: /dev/net/tun

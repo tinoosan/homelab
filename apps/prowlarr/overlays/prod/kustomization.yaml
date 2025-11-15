@@ -4,4 +4,5 @@ namespace: prowlarr
 resources:
   - ../../base
   - namespace.yaml
-
+patchesStrategicMerge:
+  - patch-gluetun-sidecar.yaml
