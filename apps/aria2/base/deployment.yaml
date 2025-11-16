@@ -19,15 +19,15 @@ spec:
       volumes:
         - name: downloads-tv
           hostPath:
-            path: /mnt/gdrive/Videos/TV
+            path: /downloads/TV
             type: DirectoryOrCreate
         - name: downloads-movies
           hostPath:
-            path: /mnt/gdrive/Videos/Movies
+            path: /downloads/Movies
             type: DirectoryOrCreate
         - name: downloads-anime
           hostPath:
-            path: /mnt/gdrive/Videos/Anime
+            path: /downloads/Anime
             type: DirectoryOrCreate
         - name: aria2-config
           hostPath:

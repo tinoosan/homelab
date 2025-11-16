@@ -22,7 +22,7 @@ spec:
             claimName: qbittorrent-config
         - name: downloads
           hostPath:
-            path: /mnt/gdrive/Videos
+            path: /downloads
             type: Directory
       containers:
         - name: qbittorrent

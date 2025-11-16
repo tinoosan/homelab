@@ -22,19 +22,19 @@ spec:
             claimName: transmission-config
         - name: downloads
           hostPath:
-            path: /mnt/gdrive/Videos
+            path: /downloads
             type: Directory
         - name: downloads-tv
           hostPath:
-            path: /mnt/gdrive/Videos/TV
+            path: /downloads/TV
             type: DirectoryOrCreate
         - name: downloads-movies
           hostPath:
-            path: /mnt/gdrive/Videos/Movies
+            path: /downloads/Movies
             type: DirectoryOrCreate
         - name: downloads-anime
           hostPath:
-            path: /mnt/gdrive/Videos/Anime
+            path: /downloads/Anime
             type: DirectoryOrCreate
       containers:
         - name: transmission
