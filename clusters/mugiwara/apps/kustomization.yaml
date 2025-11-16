@@ -17,6 +17,7 @@ resources:
   - ../../../apps/sonarr/overlays/prod
   - ../../../apps/prowlarr/overlays/prod
   - ../../../apps/radarr/overlays/prod
+  - ../../../apps/qbittorrent/overlays/prod
 
 
 patchesStrategicMerge:

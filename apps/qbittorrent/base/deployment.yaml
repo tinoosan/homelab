@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  labels:
+    app: qbittorrent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+      annotations:
+        homelab.dev/rollout-nonce: "2025-11-04-01"
+    spec:
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config
+        - name: downloads-tv
+          hostPath:
+            path: /mnt/gdrive/Videos/TV
+            type: DirectoryOrCreate
+        - name: downloads-movies
+          hostPath:
+            path: /mnt/gdrive/Videos/Movies
+            type: DirectoryOrCreate
+        - name: downloads-anime
+          hostPath:
+            path: /mnt/gdrive/Videos/Anime
+            type: DirectoryOrCreate
+      containers:
+        - name: qbittorrent
+          image: linuxserver/qbittorrent:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: PUID
+              valueFrom:
+                configMapKeyRef:
+                  name: qbittorrent-config
+                  key: PUID
+            - name: PGID
+              valueFrom:
+                configMapKeyRef:
+                  name: qbittorrent-config
+                  key: PGID
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: qbittorrent-config
+                  key: TZ
+            - name: WEBUI_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: qbittorrent-config
+                  key: WEBUI_PORT
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads-tv
+              mountPath: /downloads/tv
+            - name: downloads-movies
+              mountPath: /downloads/movies
+            - name: downloads-anime
+              mountPath: /downloads/anime
+

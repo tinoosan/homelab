@@ -53,6 +53,10 @@ spec:
       kind: Deployment
       name: radarr
       namespace: radarr
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: qbittorrent
+      namespace: qbittorrent
   sourceRef:
     kind: GitRepository
     name: flux-system
