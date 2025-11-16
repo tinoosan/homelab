@@ -68,15 +68,15 @@ spec:
       volumes:
         - name: library-tv
           hostPath:
-            path: /mnt/gdrive/Videos/TV
+            path: /mnt/gdrive/Videos/tv
             type: Directory
         - name: library-movies
           hostPath:
-            path: /mnt/gdrive/Videos/Movies
+            path: /mnt/gdrive/Videos/movies
             type: Directory
         - name: library-anime
           hostPath:
-            path: /mnt/gdrive/Videos/Anime
+            path: /mnt/gdrive/Videos/anime
             type: Directory
         - name: downloads
           hostPath:
