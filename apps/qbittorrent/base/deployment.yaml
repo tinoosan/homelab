@@ -20,18 +20,10 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: qbittorrent-config
-        - name: downloads-tv
+        - name: downloads
           hostPath:
-            path: /mnt/gdrive/Videos/TV
-            type: DirectoryOrCreate
-        - name: downloads-movies
-          hostPath:
-            path: /mnt/gdrive/Videos/Movies
-            type: DirectoryOrCreate
-        - name: downloads-anime
-          hostPath:
-            path: /mnt/gdrive/Videos/Anime
-            type: DirectoryOrCreate
+            path: /mnt/gdrive/Videos
+            type: Directory
       containers:
         - name: qbittorrent
           image: linuxserver/qbittorrent:latest
@@ -63,10 +55,5 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: downloads-tv
-              mountPath: /downloads/tv
-            - name: downloads-movies
-              mountPath: /downloads/movies
-            - name: downloads-anime
-              mountPath: /downloads/anime
-
+            - name: downloads
+              mountPath: /downloads
