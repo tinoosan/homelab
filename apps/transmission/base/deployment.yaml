@@ -64,6 +64,8 @@ spec:
                 configMapKeyRef:
                   name: transmission-config
                   key: WEB_PORT
+            - name: TRANSMISSION_PEER_PORT
+              value: "51413"
           volumeMounts:
             - name: config
               mountPath: /config

@@ -38,7 +38,7 @@ spec:
             - name: FIREWALL_OUTBOUND_SUBNETS
               value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
             - name: FIREWALL_INPUT_PORTS
-              value: "9091"
+              value: "9091,51413"
             - name: HEALTH_VPN
               value: "on"
           envFrom:
