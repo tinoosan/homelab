@@ -16,6 +16,25 @@ spec:
       annotations:
         homelab.dev/rollout-nonce: "2025-11-04-01"
     spec:
+      initContainers:
+        - name: fix-permissions
+          image: busybox:1.36
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /downloads/tv /downloads/movies /downloads/anime \
+                && chown -R 1000:1000 /downloads/tv /downloads/movies /downloads/anime
+          volumeMounts:
+            - name: downloads-tv
+              mountPath: /downloads/tv
+            - name: downloads-movies
+              mountPath: /downloads/movies
+            - name: downloads-anime
+              mountPath: /downloads/anime
       containers:
         - name: radarr
           image: linuxserver/radarr:latest
