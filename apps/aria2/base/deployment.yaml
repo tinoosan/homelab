@@ -17,18 +17,10 @@ spec:
         homelab.dev/rollout-nonce: "2025-10-29-01"
     spec:
       volumes:
-        - name: downloads-tv
+        - name: downloads
           hostPath:
-            path: /downloads/TV
-            type: DirectoryOrCreate
-        - name: downloads-movies
-          hostPath:
-            path: /downloads/Movies
-            type: DirectoryOrCreate
-        - name: downloads-anime
-          hostPath:
-            path: /downloads/Anime
-            type: DirectoryOrCreate
+            path: /downloads
+            type: Directory
         - name: aria2-config
           hostPath:
             path: /srv/aria2/config
@@ -44,15 +36,11 @@ spec:
             - -c
             - >-
               mkdir -p /downloads/tv /downloads/movies /downloads/anime &&
-              chown -R 65532:65532 /downloads/tv /downloads/movies /downloads/anime &&
-              chmod -R 775 /downloads/tv /downloads/movies /downloads/anime
+              chown -R 65532:65532 /downloads &&
+              chmod -R 775 /downloads
           volumeMounts:
-            - name: downloads-tv
-              mountPath: /downloads/tv
-            - name: downloads-movies
-              mountPath: /downloads/movies
-            - name: downloads-anime
-              mountPath: /downloads/anime
+            - name: downloads
+              mountPath: /downloads
       containers:
         - name: aria2
           image: p3terx/aria2-pro:latest
@@ -85,11 +73,7 @@ spec:
             - name: DISABLE_DELETE_EMPTY_DIR
               value: "true"
           volumeMounts:
-            - name: downloads-tv
-              mountPath: /downloads/tv
-            - name: downloads-movies
-              mountPath: /downloads/movies
-            - name: downloads-anime
-              mountPath: /downloads/anime
+            - name: downloads
+              mountPath: /downloads
             - name: aria2-config
               mountPath: /config

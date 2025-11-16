@@ -24,18 +24,6 @@ spec:
           hostPath:
             path: /downloads
             type: Directory
-        - name: downloads-tv
-          hostPath:
-            path: /downloads/TV
-            type: DirectoryOrCreate
-        - name: downloads-movies
-          hostPath:
-            path: /downloads/Movies
-            type: DirectoryOrCreate
-        - name: downloads-anime
-          hostPath:
-            path: /downloads/Anime
-            type: DirectoryOrCreate
       containers:
         - name: transmission
           image: linuxserver/transmission:latest
@@ -71,9 +59,3 @@ spec:
               mountPath: /config
             - name: downloads
               mountPath: /downloads
-            - name: downloads-tv
-              mountPath: /downloads/tv
-            - name: downloads-movies
-              mountPath: /downloads/movies
-            - name: downloads-anime
-              mountPath: /downloads/anime
