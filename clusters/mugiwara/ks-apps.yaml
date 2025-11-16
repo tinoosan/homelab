@@ -57,6 +57,10 @@ spec:
       kind: Deployment
       name: qbittorrent
       namespace: qbittorrent
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: transmission
+      namespace: transmission
   sourceRef:
     kind: GitRepository
     name: flux-system

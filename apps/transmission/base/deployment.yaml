@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission
+  labels:
+    app: transmission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission
+      annotations:
+        homelab.dev/rollout-nonce: "2025-11-16-01"
+    spec:
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: transmission-config
+        - name: downloads
+          hostPath:
+            path: /mnt/gdrive/Videos
+            type: Directory
+        - name: downloads-tv
+          hostPath:
+            path: /mnt/gdrive/Videos/TV
+            type: DirectoryOrCreate
+        - name: downloads-movies
+          hostPath:
+            path: /mnt/gdrive/Videos/Movies
+            type: DirectoryOrCreate
+        - name: downloads-anime
+          hostPath:
+            path: /mnt/gdrive/Videos/Anime
+            type: DirectoryOrCreate
+      containers:
+        - name: transmission
+          image: linuxserver/transmission:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9091
+          env:
+            - name: PUID
+              valueFrom:
+                configMapKeyRef:
+                  name: transmission-config
+                  key: PUID
+            - name: PGID
+              valueFrom:
+                configMapKeyRef:
+                  name: transmission-config
+                  key: PGID
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: transmission-config
+                  key: TZ
+            - name: WEB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: transmission-config
+                  key: WEB_PORT
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+            - name: downloads-tv
+              mountPath: /downloads/tv
+            - name: downloads-movies
+              mountPath: /downloads/movies
+            - name: downloads-anime
+              mountPath: /downloads/anime
