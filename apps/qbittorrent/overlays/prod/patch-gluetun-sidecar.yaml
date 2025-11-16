@@ -29,6 +29,8 @@ spec:
               value: nordvpn
             - name: VPN_TYPE
               value: openvpn
+            - name: SERVER_COUNTRIES
+              value: Netherlands
             - name: DNS_KEEP_NAMESERVER
               value: "on"
             - name: DOT
