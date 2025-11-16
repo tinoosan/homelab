@@ -44,6 +44,8 @@ spec:
               mountPath: /config
             - name: plex-media
               mountPath: /media
+            - name: plex-media
+              mountPath: /downloads
       volumes:
         - name: plex-media
           hostPath:
@@ -52,4 +54,3 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: radarr-config
-
