@@ -4,5 +4,3 @@ namespace: qbittorrent
 resources:
   - ../../base
   - namespace.yaml
-patchesStrategicMerge:
-  - patch-gluetun-sidecar.yaml
