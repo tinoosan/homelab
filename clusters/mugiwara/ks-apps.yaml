@@ -12,55 +12,6 @@ spec:
   prune: true
   wait: false
   force: true
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: aria2
-      namespace: aria2
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: n8n
-      namespace: n8n
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: it-tools
-      namespace: tools
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: plex
-      namespace: default
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: keycloak
-      namespace: keycloak
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: pgadmin
-      namespace: tools
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: excalidraw
-      namespace: tools
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: sonarr
-      namespace: sonarr
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: prowlarr
-      namespace: prowlarr
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: radarr
-      namespace: radarr
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: qbittorrent
-      namespace: qbittorrent
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: transmission
-      namespace: transmission
   sourceRef:
     kind: GitRepository
     name: flux-system
