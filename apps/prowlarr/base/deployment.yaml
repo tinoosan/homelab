@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: linuxserver/prowlarr:latest
+          image: ghcr.io/linuxserver/prowlarr:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -46,4 +46,3 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: prowlarr-config
-

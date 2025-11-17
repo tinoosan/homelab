@@ -33,7 +33,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: sonarr
-          image: linuxserver/sonarr:latest
+          image: ghcr.io/linuxserver/sonarr:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

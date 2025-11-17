@@ -12,7 +12,7 @@
 
 ## Root causes
 1. Image expects root during init.
-   - `p3terx/aria2-pro` uses s6 init scripts that `chown`/`chmod` under `/var/run/s6/etc` and tweak `/etc/*`.
+   - `ghcr.io/p3terx/aria2-pro` uses s6 init scripts that `chown`/`chmod` under `/var/run/s6/etc` and tweak `/etc/*`.
    - If the container is forced non-root (via `securityContext.runAsUser` or `PUID/PGID` env), those steps fail and the service may not bind `:6800`.
 2. hostPath ownership doesn’t match the container user.
    - We mount the host’s `/media` to `/data` in the pod. The directory was `root:root` with `0755`.
@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: aria2
-          image: p3terx/aria2-pro:latest
+        image: ghcr.io/p3terx/aria2-pro:latest
           env:
             - name: RPC_SECRET     # from Secret in your cluster
               valueFrom:
@@ -102,7 +102,7 @@ spec:
     fsGroup: 1000          # helps for some volume types; for hostPath you still need chown
   containers:
     - name: aria2
-      image: p3terx/aria2-pro:latest
+      image: ghcr.io/p3terx/aria2-pro:latest
       env:
         - name: PUID
           value: "1000"
@@ -165,4 +165,3 @@ Expected JSON: `result.version` present (not Unauthorized).
 - (If notifications used) confirm WS subprotocol `jsonrpc` is set in the client.
 
 That’s it—drop this in the docs and you’ll save the next person a couple of hours.
-

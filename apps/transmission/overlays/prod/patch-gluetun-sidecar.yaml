@@ -12,7 +12,7 @@ spec:
             type: CharDevice
       containers:
         - name: gluetun
-          image: qmcgaw/gluetun
+          image: ghcr.io/qdm12/gluetun
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 0

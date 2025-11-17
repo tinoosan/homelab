@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: plex
-        image: lscr.io/linuxserver/plex:latest
+        image: ghcr.io/linuxserver/plex:latest
         env:
           - name: PUID
             valueFrom:
@@ -77,4 +77,3 @@ spec:
       port: 32400
       targetPort: 32400
       nodePort: 32400
-

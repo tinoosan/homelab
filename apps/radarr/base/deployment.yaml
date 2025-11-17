@@ -33,7 +33,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: radarr
-          image: linuxserver/radarr:latest
+          image: ghcr.io/linuxserver/radarr:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

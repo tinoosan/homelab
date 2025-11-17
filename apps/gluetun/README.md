@@ -1,7 +1,7 @@
 Gluetun VPN Proxy for n8n
 
 Overview
-- Runs qmcgaw/gluetun in namespace `n8n` as an internal HTTP proxy for egress through a VPN.
+- Runs ghcr.io/qdm12/gluetun in namespace `n8n` as an internal HTTP proxy for egress through a VPN.
 - n8n is configured to use the proxy via `HTTP_PROXY`/`HTTPS_PROXY` envs.
 - No Ingress is exposed for Gluetun; it is cluster‑internal only.
 
@@ -43,4 +43,3 @@ Optional server targeting
 Notes
 - Gluetun HTTP proxy is enabled via `HTTPPROXY=on`; no SOCKS is used.
 - No Ingress is required; only n8n should reach the proxy. Consider a NetworkPolicy to restrict access to the Gluetun Service to pods with label `app=n8n`.
-

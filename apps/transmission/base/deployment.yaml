@@ -26,7 +26,7 @@ spec:
             type: Directory
       containers:
         - name: transmission
-          image: linuxserver/transmission:latest
+          image: ghcr.io/linuxserver/transmission:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

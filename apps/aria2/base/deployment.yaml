@@ -43,7 +43,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: aria2
-          image: p3terx/aria2-pro:latest
+          image: ghcr.io/p3terx/aria2-pro:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: rpc

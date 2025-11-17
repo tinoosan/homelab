@@ -12,7 +12,7 @@ spec:
             type: CharDevice
       containers:
         - name: gluetun
-          image: qmcgaw/gluetun
+          image: ghcr.io/qdm12/gluetun
           imagePullPolicy: IfNotPresent
           securityContext:
             # Override pod defaults to run Gluetun as root with NET_ADMIN
