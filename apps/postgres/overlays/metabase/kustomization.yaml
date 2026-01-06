@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: metabase
 resources:
   - ../../base
-  - secrets.yaml
 patchesStrategicMerge:
   - patch-statefulset.yaml

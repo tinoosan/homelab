@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: ledger-dev
 resources:
   - ../../base
-  - secret-app-creds.yaml
 configMapGenerator:
   - name: pg-init
     files:

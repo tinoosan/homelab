@@ -5,11 +5,9 @@ resources:
   - ../../base
   - namespace.yaml
   - configmap.yaml
-  - secret.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml
 images:
   - name: ghcr.io/tinoosan/ledger
     newTag: dev
-

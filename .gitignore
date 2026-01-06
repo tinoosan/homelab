@@ -1,1 +1,11 @@
+# Local-only Kubernetes secrets (never commit plaintext creds)
+**/secrets.yaml
+**/secret.yaml
+**/secret-*.yaml
+**/secret_*.yaml
+
+# Keep examples committed
+!**/*.example.yaml
+
+# Back-compat existing ignore
 /infra/networking/cloudflared/manifests/secret.example.yaml

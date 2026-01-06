@@ -26,7 +26,10 @@ spec:
     grafana:
       enabled: true
       defaultDashboardsEnabled: true
-      adminPassword: "admin"
+      admin:
+        existingSecret: grafana-admin
+        userKey: admin-user
+        passwordKey: admin-password
       ingress:
         enabled: true
         ingressClassName: nginx
@@ -38,4 +41,3 @@ spec:
       enabled: true
       alertmanagerSpec:
         retention: 120h
-
