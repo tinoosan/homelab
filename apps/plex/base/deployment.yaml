@@ -37,6 +37,11 @@ spec:
               configMapKeyRef:
                 name: plex-configmap
                 key: VERSION
+          - name: ADVERTISE_IP
+            valueFrom:
+              configMapKeyRef:
+                name: plex-configmap
+                key: ADVERTISE_IP
         volumeMounts:
           - name: plex-volume
             mountPath: /media
@@ -44,7 +49,6 @@ spec:
             mountPath: /config
           - name: dri-device
             mountPath: /dev/dri
-            readOnly: true
         securityContext:
           privileged: true
         ports:
@@ -70,6 +74,7 @@ metadata:
   name: plex
 spec:
   type: NodePort
+  externalTrafficPolicy: Local
   selector:
     app: plex
   ports:
