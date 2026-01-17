@@ -21,8 +21,8 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             capabilities:
-              drop: ["ALL"]
-              add: ["NET_ADMIN"]
+              drop: []
+              add: ["NET_ADMIN", "NET_RAW"]
             seccompProfile:
               type: RuntimeDefault
           env:
