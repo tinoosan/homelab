@@ -18,10 +18,13 @@ spec:
             runAsUser: 0
             runAsGroup: 0
             runAsNonRoot: false
-            allowPrivilegeEscalation: true
-            privileged: true
+            allowPrivilegeEscalation: false
+            privileged: false
             capabilities:
+              drop: ["ALL"]
               add: ["NET_ADMIN"]
+            seccompProfile:
+              type: RuntimeDefault
           env:
             - name: TZ
               value: Europe/London
