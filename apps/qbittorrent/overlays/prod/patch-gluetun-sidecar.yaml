@@ -38,6 +38,12 @@ spec:
               value: "on"
             - name: DOT
               value: "off"
+            - name: BLOCK_MALICIOUS
+              value: "off"
+            - name: BLOCK_SURVEILLANCE
+              value: "off"
+            - name: BLOCK_ADS
+              value: "off"
             - name: SOCKS5
               value: "on"
             - name: SOCKS5_PORT

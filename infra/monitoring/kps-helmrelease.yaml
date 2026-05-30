@@ -26,7 +26,7 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         resources:
           requests:
-            cpu: 250m
+            cpu: 150m
             memory: 1Gi
           limits:
             memory: 2Gi
