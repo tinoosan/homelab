@@ -35,7 +35,7 @@ spec:
               mountPath: /home/node/.n8n
       containers:
         - name: n8n
-          image: docker.io/n8nio/n8n:latest
+          image: docker.io/n8nio/n8n@sha256:94f108ec1ed2ee17198fff2432d580b184b54c609bc23e27889f5ed6b98a4789
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

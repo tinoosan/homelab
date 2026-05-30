@@ -32,6 +32,12 @@ spec:
             - name: cfg
               mountPath: /etc/cloudflared/config.yaml
               subPath: config.yaml
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
       volumes:
         - name: cfg
           configMap:

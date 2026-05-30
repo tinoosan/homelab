@@ -26,7 +26,7 @@ spec:
             type: Directory
       containers:
         - name: transmission
-          image: ghcr.io/linuxserver/transmission:latest
+          image: ghcr.io/linuxserver/transmission@sha256:bd9d4858be1138787cd3e4d05d2f8be72ab24685117361f47184f95d9215d859
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -59,3 +59,9 @@ spec:
               mountPath: /config
             - name: downloads
               mountPath: /downloads
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              memory: 1Gi

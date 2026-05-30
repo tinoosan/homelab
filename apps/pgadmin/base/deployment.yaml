@@ -29,6 +29,10 @@ spec:
         envFrom:
           - secretRef:
               name: pgadmin-credentials
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
         volumeMounts:
           - name: pgadmin-data
             mountPath: /var/lib/pgadmin

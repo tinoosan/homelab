@@ -6,6 +6,3 @@ resources:
   - service.yaml
   - ingress.yaml
   - namespace.yaml
-images:
-  - name: corentinth/it-tools
-    newTag: latest  # placeholder; overlays will override

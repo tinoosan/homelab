@@ -33,7 +33,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: radarr
-          image: ghcr.io/linuxserver/radarr:latest
+          image: ghcr.io/linuxserver/radarr@sha256:ca43905eaf2dd11425efdcfe184892e43806b1ae0a830440c825cecbc2629cfb
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -65,6 +65,12 @@ spec:
               mountPath: /media/anime
             - name: downloads
               mountPath: /downloads
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              memory: 1Gi
       volumes:
         - name: library-tv
           hostPath:

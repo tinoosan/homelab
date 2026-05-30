@@ -43,7 +43,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: aria2
-          image: ghcr.io/p3terx/aria2-pro:latest
+          image: ghcr.io/p3terx/aria2-pro@sha256:41eb2a91901b7b612f7eb87a617ad05aa02e3f7ed0b7e9531e805818608f99ca
           imagePullPolicy: IfNotPresent
           ports:
             - name: rpc
@@ -77,3 +77,9 @@ spec:
               mountPath: /downloads
             - name: aria2-config
               mountPath: /config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 768Mi

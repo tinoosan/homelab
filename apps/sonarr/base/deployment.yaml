@@ -33,7 +33,7 @@ spec:
               mountPath: /downloads
       containers:
         - name: sonarr
-          image: ghcr.io/linuxserver/sonarr:latest
+          image: ghcr.io/linuxserver/sonarr@sha256:76414c033f290d3c9f1f9dfad71150abe71d92592369a3377a5903d579e6e2b2
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -65,6 +65,12 @@ spec:
               mountPath: /media/anime
             - name: downloads
               mountPath: /downloads
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              memory: 1Gi
       volumes:
         - name: library-tv
           hostPath:

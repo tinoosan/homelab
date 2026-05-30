@@ -20,9 +20,16 @@ spec:
         scrapeInterval: 15s
         evaluationInterval: 15s
         retention: 7d
+        retentionSize: 12GB
         enableAdminAPI: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
+        resources:
+          requests:
+            cpu: 250m
+            memory: 1Gi
+          limits:
+            memory: 2Gi
     grafana:
       enabled: true
       defaultDashboardsEnabled: true
@@ -37,7 +44,19 @@ spec:
           - grafana.jamaguchi.xyz
         path: /
         pathType: Prefix
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          memory: 512Mi
     alertmanager:
       enabled: true
       alertmanagerSpec:
         retention: 120h
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            memory: 256Mi

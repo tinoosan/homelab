@@ -19,7 +19,7 @@ spec:
             type: CharDevice
       containers:
         - name: gluetun
-          image: ghcr.io/qdm12/gluetun
+          image: ghcr.io/qdm12/gluetun@sha256:75d4573f6816bc08651c436845b4b6c7abeddf9a5f4d908880d255aa2696ed65
           securityContext:
             capabilities:
               add: ["NET_ADMIN"]

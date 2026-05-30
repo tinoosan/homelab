@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: ghcr.io/linuxserver/prowlarr:latest
+          image: ghcr.io/linuxserver/prowlarr@sha256:9ef5d8bf832edcacb6082f9262cb36087854e78eb7b1c3e1d4375056055b2d82
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -42,6 +42,12 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+          resources:
+            requests:
+              cpu: 75m
+              memory: 256Mi
+            limits:
+              memory: 768Mi
       volumes:
         - name: config
           persistentVolumeClaim:

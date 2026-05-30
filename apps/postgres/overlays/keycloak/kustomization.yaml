@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: keycloak
 resources:
   - ../../base
+  - backup-cronjob.yaml
   - configmap.yaml
 patchesStrategicMerge:
   - patch-statefulset.yaml

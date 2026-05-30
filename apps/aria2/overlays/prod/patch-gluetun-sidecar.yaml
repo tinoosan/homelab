@@ -12,7 +12,7 @@ spec:
             type: CharDevice
       containers:
         - name: gluetun
-          image: ghcr.io/qdm12/gluetun
+          image: ghcr.io/qdm12/gluetun@sha256:75d4573f6816bc08651c436845b4b6c7abeddf9a5f4d908880d255aa2696ed65
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 0
@@ -47,6 +47,10 @@ spec:
           envFrom:
             - secretRef:
                 name: vpn-secret
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
           volumeMounts:
             - name: dev-net-tun
               mountPath: /dev/net/tun

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: metabase
-          image: metabase/metabase:latest
+          image: metabase/metabase@sha256:5b2d277b591b8303c51dd2a5d2d91ab5f27f12b2dc3a47adb2444e1e0a41f351
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -34,8 +34,13 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /metabase-data
+          resources:
+            requests:
+              cpu: 250m
+              memory: 768Mi
+            limits:
+              memory: 1536Mi
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: metabase-data
-

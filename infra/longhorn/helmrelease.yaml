@@ -21,4 +21,20 @@ spec:
       defaultReplicaCount: 2   # for small clusters; 3 if you have >=3 nodes
       replicaSoftAntiAffinity: true
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-
+      backupTarget: nfs://192.168.0.90:/srv/longhorn-backups
+      backupstorePollInterval: 300
+      recurringSuccessfulJobsHistoryLimit: 3
+      recurringFailedJobsHistoryLimit: 3
+    recurringJobs:
+      - name: daily-snapshot
+        task: snapshot
+        cron: "15 3 * * *"
+        retain: 7
+        groups:
+          - default
+      - name: weekly-backup
+        task: backup
+        cron: "45 3 * * 0"
+        retain: 4
+        groups:
+          - default

@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: metabase
 resources:
   - ../../base
+  - backup-cronjob.yaml
 patchesStrategicMerge:
   - patch-statefulset.yaml

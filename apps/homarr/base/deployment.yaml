@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: homarr
-          image: ghcr.io/ajnart/homarr:latest
+          image: ghcr.io/ajnart/homarr@sha256:e103abadfb527186af5b4bd43df4eff7c67afa5cd4df8e65fa97910c8840b2a9
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -26,6 +26,10 @@ spec:
           env:
             - name: TZ
               value: Europe/London
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
           volumeMounts:
             - name: homarr-data
               mountPath: /app/data/configs
@@ -40,4 +44,3 @@ spec:
         - name: homarr-data
           persistentVolumeClaim:
             claimName: homarr-data
-

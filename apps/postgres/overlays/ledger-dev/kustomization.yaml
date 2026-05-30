@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: ledger-dev
 resources:
   - ../../base
+  - backup-cronjob.yaml
 configMapGenerator:
   - name: pg-init
     files:

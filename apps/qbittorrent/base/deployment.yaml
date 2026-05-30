@@ -26,7 +26,7 @@ spec:
             type: Directory
       containers:
         - name: qbittorrent
-          image: ghcr.io/linuxserver/qbittorrent:latest
+          image: ghcr.io/linuxserver/qbittorrent@sha256:570aeb63bdedcb5f9dd2500bd8f0a75581ba07c518c05cabbef0cfeb15451b3f
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -57,3 +57,9 @@ spec:
               mountPath: /config
             - name: downloads
               mountPath: /downloads
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              memory: 1Gi
