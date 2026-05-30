@@ -44,6 +44,8 @@ spec:
               value: "off"
             - name: BLOCK_ADS
               value: "off"
+            - name: DNS_ADDRESS
+              value: "1.1.1.1"
             # Allow direct access to cluster/LAN subnets (bypass VPN) for in-cluster services like aria2
             - name: FIREWALL_OUTBOUND_SUBNETS
               value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16

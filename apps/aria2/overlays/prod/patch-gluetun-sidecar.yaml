@@ -36,14 +36,17 @@ spec:
               value: "on"
             - name: DOT
               value: "off"
-            # Disable DoT-using blocklist features (gluetun strict DNS validation
-            # regression rejects DoT upstream when built-in DNS is disabled)
+            # Disable DoT-using blocklist features and force a plain DNS
+            # upstream (gluetun's strict DNS validation rejects DoT upstream
+            # when the built-in DNS server is disabled via DNS_KEEP_NAMESERVER)
             - name: BLOCK_MALICIOUS
               value: "off"
             - name: BLOCK_SURVEILLANCE
               value: "off"
             - name: BLOCK_ADS
               value: "off"
+            - name: DNS_ADDRESS
+              value: "1.1.1.1"
             # Allow direct access to cluster/LAN ranges so cluster services remain reachable
             - name: FIREWALL_OUTBOUND_SUBNETS
               value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
