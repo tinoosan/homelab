@@ -37,8 +37,10 @@ The live mode uses the current `kubectl` context and, when installed, the
 
 - Required operations docs exist:
   - `docs/operations-baseline-2026-05-28.md`
+  - `docs/operations-baseline-2026-06-01.md`
   - `docs/postgres-backup-restore.md`
   - `docs/public-ingress-exposure.md`
+  - `docs/longhorn-backup-target.md`
   - `docs/resilience-topology.md`
   - `docs/secrets-workflow.md`
 - All discovered Kustomize roots build locally with `kustomize` or
@@ -91,9 +93,11 @@ The live mode uses the current `kubectl` context and, when installed, the
 
 Use the existing docs for deeper checks:
 
-- Current cluster blockers: `docs/operations-baseline-2026-05-28.md`
+- Current cluster baseline: `docs/operations-baseline-2026-06-01.md`
+- Historical unhealthy baseline: `docs/operations-baseline-2026-05-28.md`
 - Public routes: `docs/public-ingress-exposure.md`
 - Backup and restore testing: `docs/postgres-backup-restore.md`
+- Longhorn backup target: `docs/longhorn-backup-target.md`
 - Secrets workflow: `docs/secrets-workflow.md`
 - Multi-node resilience plan: `docs/resilience-topology.md`
 
@@ -101,6 +105,9 @@ Use the existing docs for deeper checks:
 
 - `tools.jamaguchi.xyz` is intentionally documented as an Ingress host without a
   Cloudflared route in `docs/public-ingress-exposure.md`.
+- Longhorn currently has only the legacy/unsupported
+  `defaultSettings.backupTarget` value. This remains a warning until external
+  backup storage is provisioned and `defaultBackupStore.backupTarget` is used.
 
 ## Acceptance Criteria
 

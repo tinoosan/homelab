@@ -18,6 +18,7 @@ Move to a three-node topology when hardware is available:
 
 - Longhorn needs enough disk on at least two nodes for replica count 2.
 - Backup target must be outside the Longhorn data path. Current GitOps config points Longhorn backups at `nfs://192.168.0.90:/srv/longhorn-backups`; production use should move this to separate storage or another host.
+- Longhorn backup target details and target-state GitOps shape are tracked in `docs/longhorn-backup-target.md`.
 - Postgres logical backups are still required because volume snapshots alone do not prove application-level restoreability.
 
 ## Preferred Next Step

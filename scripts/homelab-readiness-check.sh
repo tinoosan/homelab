@@ -57,6 +57,8 @@ check_required_files() {
   local files=(
     "README.md"
     "docs/operations-baseline-2026-05-28.md"
+    "docs/operations-baseline-2026-06-01.md"
+    "docs/longhorn-backup-target.md"
     "docs/postgres-backup-restore.md"
     "docs/public-ingress-exposure.md"
     "docs/resilience-topology.md"
@@ -412,10 +414,19 @@ check_backup_posture() {
     fi
   done
 
-  if grep -q 'backupTarget:' "$ROOT_DIR/infra/longhorn/helmrelease.yaml" 2>/dev/null; then
-    pass "Longhorn backup target is configured"
-  else
-    fail "Longhorn backup target is not configured"
+  if require_yq "Longhorn backup target check"; then
+    local longhorn_target legacy_longhorn_target
+
+    longhorn_target="$(yq -r '.spec.values.defaultBackupStore.backupTarget // ""' "$ROOT_DIR/infra/longhorn/helmrelease.yaml" 2>/dev/null)"
+    legacy_longhorn_target="$(yq -r '.spec.values.defaultSettings.backupTarget // ""' "$ROOT_DIR/infra/longhorn/helmrelease.yaml" 2>/dev/null)"
+
+    if [[ -n "$longhorn_target" && "$longhorn_target" != "null" ]]; then
+      pass "Longhorn backup target is configured with defaultBackupStore"
+    elif [[ -n "$legacy_longhorn_target" && "$legacy_longhorn_target" != "null" ]]; then
+      warn "Longhorn backup target uses legacy/unsupported defaultSettings.backupTarget key"
+    else
+      fail "Longhorn backup target is not configured"
+    fi
   fi
 
   if [[ -s "$ROOT_DIR/docs/postgres-backup-restore.md" ]]; then

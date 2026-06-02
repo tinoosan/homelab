@@ -1,5 +1,8 @@
 # Operations Baseline - 2026-05-28
 
+Historical note: this baseline captures a past unhealthy state. The current
+healthy baseline is `docs/operations-baseline-2026-06-01.md`.
+
 ## Live Cluster
 
 - Cluster: `mugiwara`, single control-plane node.
