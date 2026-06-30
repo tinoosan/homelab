@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ledger
 spec:
-  replicas: 1
+  replicas: 0
   template:
     metadata:
       annotations:

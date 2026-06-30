@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: postgres
 spec:
+  replicas: 0
   template:
     spec:
       containers:
