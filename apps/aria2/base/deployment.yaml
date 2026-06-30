@@ -38,7 +38,7 @@ spec:
             - -c
             - >-
               mkdir -p /downloads/tv /downloads/movies /downloads/anime &&
-              chown -R 65532:65532 /downloads &&
+              chown -R 1000:1000 /downloads &&
               chmod -R 775 /downloads
           volumeMounts:
             - name: downloads
@@ -63,9 +63,9 @@ spec:
             - name: TZ
               value: "UTC"
             - name: PUID
-              value: "65532"
+              value: "1000"
             - name: PGID
-              value: "65532"
+              value: "1000"
             - name: UMASK_SET
               value: "022"
             - name: RPC_LISTEN_ALL

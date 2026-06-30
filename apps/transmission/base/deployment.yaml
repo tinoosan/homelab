@@ -18,6 +18,22 @@ spec:
       annotations:
         homelab.dev/rollout-nonce: "2025-11-16-01"
     spec:
+      initContainers:
+        - name: fix-permissions
+          image: busybox:1.36
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /downloads/tv /downloads/movies /downloads/anime \
+                && chown -R 1000:1000 /downloads \
+                && chmod -R 775 /downloads
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
       volumes:
         - name: config
           persistentVolumeClaim:
