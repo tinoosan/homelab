@@ -16,6 +16,7 @@ spec:
   values:
     fullnameOverride: mon
     prometheus:
+      enabled: false
       prometheusSpec:
         scrapeInterval: 15s
         evaluationInterval: 15s
