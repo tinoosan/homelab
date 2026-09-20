@@ -72,6 +72,12 @@ uses NordVPN OpenVPN at `nl912.nordvpn.com` in the Netherlands. Its firewall
 is enabled, with no outbound LAN or Kubernetes subnet exceptions. UI ports
 7878, 8989, 9696 and 9091 are published only on host loopback.
 
+Radarr and Sonarr trust forwarded headers only from `172.25.0.1/32`, the
+Docker bridge gateway used by host-side Tailscale Serve. Authentication remains
+required. This preserves HTTPS on login redirects. If the Compose network is
+recreated with a different gateway, update Trusted Networks in both apps to
+the new gateway address only. See the [Radarr security settings](https://github.com/Servarr/Wiki/blob/master/radarr/settings.md#security).
+
 DNS resolves through Gluetun at `127.0.0.1`, with DNS over TLS upstream.
 Applications wait for VPN health on startup. Gluetun handles tunnel reconnects.
 If the pinned VPN endpoint is retired, change `SERVER_HOSTNAMES` and verify
@@ -144,7 +150,9 @@ Homarr operations use the same Compose commands in its own directory.
 Radarr's database integrity check passed before startup. All 83 movies and
 the existing account settings were retained. Radarr runs version 6.4.4.10685.
 Transmission and Prowlarr integration tests passed. Movie and download paths
-are writable by the runtime user. Radarr egress reports the Netherlands.
+are writable by the runtime user. Radarr egress reports the Netherlands. All four Radarr indexer tests passed
+and its refreshed health check was empty. Flux applied the retirement commit;
+the old Radarr namespace, Longhorn volume, PV and attachment are removed.
 
 Previous Sonarr/Prowlarr tests confirmed that stopping Gluetun blocks direct-IP
 HTTPS on both the default route and forced eth0. All media applications now
