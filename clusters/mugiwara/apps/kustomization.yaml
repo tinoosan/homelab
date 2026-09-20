@@ -10,7 +10,6 @@ resources:
   - ../../../apps/postgres/overlays/ledger-dev
   - ../../../apps/postgres/overlays/keycloak
   - ../../../apps/pgadmin/overlays/prod
-  - ../../../apps/homarr/overlays/prod
   - ../../../apps/metabase/overlays/prod
   - ../../../apps/postgres/overlays/metabase
   - ../../../apps/excalidraw/overlays/prod
