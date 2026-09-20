@@ -18,7 +18,7 @@ GitOps, storage, ingress, observability, and operational runbooks.
   - Ingress VIP: `192.168.0.110`
 - Storage: Longhorn
 - Public tunnel: Cloudflared routes selected public hostnames to ingress-nginx
-- Observability: kube-prometheus-stack and metrics-server
+- Observability: Prometheus and Grafana in Docker; Kubernetes metrics-server remains
 - Identity: Keycloak with split public and admin hostnames
 
 ## Inventory
@@ -29,7 +29,7 @@ Core infrastructure:
 | --- | --- |
 | Cluster wiring | `clusters/mugiwara/` |
 | Flux system | `flux-system/` |
-| Ingress / MetalLB / storage / monitoring | `infra/` |
+| Ingress / MetalLB / storage | `infra/` |
 | Cloudflared public routing | `infra/networking/cloudflared/` |
 | Keycloak identity | `infra/keycloak/` |
 
@@ -46,7 +46,7 @@ Kubernetes applications:
 | Plex | `default` | Host/device dependent; no ingress |
 | qBittorrent | `qbittorrent` | `qbittorrent.jamaguchi.xyz`; Gluetun sidecar |
 
-Homarr, Sonarr, Prowlarr, Transmission and Radarr run privately in Docker.
+Homarr, Sonarr, Prowlarr, Transmission, Radarr, Prometheus and Grafana run privately in Docker.
 Their Kubernetes manifests, namespaces and public tunnel routes have been removed.
 See [Docker media services](docs/docker-media-services.md) for paths, ports and operations.
 
@@ -74,7 +74,6 @@ Useful internal DNS examples:
 ```text
 192.168.0.110 keycloak.jamaguchi.xyz
 192.168.0.110 kc-admin.jamaguchi.xyz
-192.168.0.110 grafana.jamaguchi.xyz
 192.168.0.110 pgadmin.jamaguchi.xyz
 ```
 
@@ -112,7 +111,6 @@ Force reconcile when needed:
 ```sh
 flux reconcile source git flux-system -n flux-system
 flux reconcile kustomization apps -n flux-system
-flux reconcile kustomization monitoring -n flux-system
 ```
 
 ## Operations Docs
@@ -121,6 +119,7 @@ flux reconcile kustomization monitoring -n flux-system
 | --- | --- |
 | Learn how the homelab works | [Homelab Handbook](docs/learning/README.md) |
 | Docker media services and private dashboard | [Runbook](docs/docker-media-services.md) |
+| Docker monitoring | [Prometheus and Grafana](docs/learning/monitoring.md) |
 | Current operations baseline | `docs/operations-baseline-2026-06-01.md` |
 | Readiness check design | `docs/operations-readiness-check.md` |
 | Backup and restore | `docs/postgres-backup-restore.md` |
