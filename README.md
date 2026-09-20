@@ -9,6 +9,7 @@ GitOps, storage, ingress, observability, and operational runbooks.
 
 - Docker: live services under `/home/tinoosan/services` on `mugiwara`
 - Private dashboard: https://mugiwara.tail9aaa00.ts.net/
+- Learning handbook: [start here](docs/learning/README.md)
 - Media stack: [Docker operations runbook](docs/docker-media-services.md)
 - Cluster: single-node Kubernetes on bare-metal Ubuntu, node `mugiwara`
 - GitOps: Flux syncs this repository from branch `main`
@@ -118,6 +119,7 @@ flux reconcile kustomization monitoring -n flux-system
 
 | Topic | Doc |
 | --- | --- |
+| Learn how the homelab works | [Homelab Handbook](docs/learning/README.md) |
 | Docker media services and private dashboard | [Runbook](docs/docker-media-services.md) |
 | Current operations baseline | `docs/operations-baseline-2026-06-01.md` |
 | Readiness check design | `docs/operations-readiness-check.md` |
