@@ -15,7 +15,6 @@ resources:
   - ../../../apps/excalidraw/overlays/prod
   - ../../../apps/radarr/overlays/prod
   - ../../../apps/qbittorrent/overlays/prod
-  - ../../../apps/transmission/overlays/prod
 
 
 patchesStrategicMerge:
