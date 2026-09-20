@@ -13,7 +13,6 @@ resources:
   - ../../../apps/metabase/overlays/prod
   - ../../../apps/postgres/overlays/metabase
   - ../../../apps/excalidraw/overlays/prod
-  - ../../../apps/radarr/overlays/prod
   - ../../../apps/qbittorrent/overlays/prod
 
 

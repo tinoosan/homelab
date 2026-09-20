@@ -1,6 +1,11 @@
 # Public Ingress Exposure
 
-Date: 2026-06-01
+Original audit: 2026-06-01
+
+Update 2026-09-20: Homarr, Sonarr, Prowlarr, Transmission and Radarr now run
+privately in Docker. Their Kubernetes ingress and Cloudflared routes were removed.
+Use [the Docker runbook](docker-media-services.md) for their current access details.
+Counts and other cluster observations below describe the original audit.
 
 Cloudflared publishes selected hostnames from
 `infra/networking/cloudflared/config/config.yaml` to the in-cluster
@@ -33,12 +38,7 @@ at audit time.
 | `n8n.jamaguchi.xyz` | `n8n/n8n` | Yes | Admin-sensitive | No auth policy visible in Ingress | n8n auth; Cloudflare Access | Verify app auth is enabled and prefer Cloudflare Access. |
 | `ledger.dev.jamaguchi.xyz` | `ledger-dev/ledger` | Yes | Dev app/API | No auth policy visible in Ingress | App auth if any; Cloudflare Access for dev-only exposure | Restrict unless intentionally public; document intended audience. |
 | `metabase.jamaguchi.xyz` | `metabase/metabase` | Yes | Data-sensitive | No auth policy visible in Ingress | Metabase login; Cloudflare Access for admin/data access | Require strong app auth; prefer Cloudflare Access for non-public analytics. |
-| `homarr.jamaguchi.xyz` | `homarr/homarr` | Yes | Internal dashboard | No auth policy visible in Ingress | Homarr auth if enabled; Cloudflare Access | Protect with Access if dashboard links reveal internal services. |
 | `qbittorrent.jamaguchi.xyz` | `qbittorrent/qbittorrent` | Yes | Admin-sensitive download client | No auth policy visible in Ingress | qBittorrent auth; Cloudflare Access | Require Cloudflare Access and app auth. |
-| `transmission.jamaguchi.xyz` | `transmission/transmission` | Yes | Admin-sensitive download client | No auth policy visible in Ingress | Transmission auth; Cloudflare Access | Require Cloudflare Access and app auth. |
-| `sonarr.jamaguchi.xyz` | `sonarr/sonarr` | Yes | Admin-sensitive media automation | No auth policy visible in Ingress | App auth/API key controls; Cloudflare Access | Require Cloudflare Access. |
-| `radarr.jamaguchi.xyz` | `radarr/radarr` | Yes | Admin-sensitive media automation | No auth policy visible in Ingress | App auth/API key controls; Cloudflare Access | Require Cloudflare Access. |
-| `prowlarr.jamaguchi.xyz` | `prowlarr/prowlarr` | Yes | Admin-sensitive indexer | No auth policy visible in Ingress | App auth/API key controls; Cloudflare Access | Require Cloudflare Access. |
 | `excalidraw.jamaguchi.xyz` | `tools/excalidraw` | Yes | Low/medium, depends on use | No auth policy visible in Ingress | App-level storage/auth expectations; Cloudflare Access if private | Public may be acceptable only if no private collaboration data is expected. |
 | `tools.jamaguchi.xyz` | `tools/it-tools` | No | Low/medium utility app | No auth policy visible in Ingress | Internal DNS/VIP access only unless Cloudflared route is added | Current state is internal-only by tunnel config. Add route only with explicit exposure intent. |
 

@@ -1,11 +1,15 @@
 # homelab
 
-This repo version-controls a personal bare-metal Kubernetes homelab. It is a
+This repo documents a homelab with Docker services and a remaining bare-metal
+Kubernetes cluster. It is a
 working self-hosted environment and a portfolio project for Kubernetes, Flux
 GitOps, storage, ingress, observability, and operational runbooks.
 
 ## Current Setup
 
+- Docker: live services under `/home/tinoosan/services` on `mugiwara`
+- Private dashboard: https://mugiwara.tail9aaa00.ts.net/
+- Media stack: [Docker operations runbook](docs/docker-media-services.md)
 - Cluster: single-node Kubernetes on bare-metal Ubuntu, node `mugiwara`
 - GitOps: Flux syncs this repository from branch `main`
 - Entrypoint: root `kustomization.yaml` points to `clusters/mugiwara`
@@ -28,24 +32,23 @@ Core infrastructure:
 | Cloudflared public routing | `infra/networking/cloudflared/` |
 | Keycloak identity | `infra/keycloak/` |
 
-Applications:
+Kubernetes applications:
 
 | App | Namespace | Public/Internal host notes |
 | --- | --- | --- |
 | aria2 | `aria2` | No ingress; Gluetun sidecar |
 | Excalidraw | `tools` | `excalidraw.jamaguchi.xyz` |
-| Homarr | `homarr` | `homarr.jamaguchi.xyz` |
 | IT Tools | `tools` | `tools.jamaguchi.xyz`; ingress-only, not routed by Cloudflared |
 | Ledger | `ledger-dev` | `ledger.dev.jamaguchi.xyz` |
 | Metabase | `metabase` | `metabase.jamaguchi.xyz` |
 | n8n | `n8n` | `n8n.jamaguchi.xyz`; Gluetun sidecar |
 | pgAdmin | `tools` | `pgadmin.jamaguchi.xyz` |
 | Plex | `default` | Host/device dependent; no ingress |
-| Prowlarr | `prowlarr` | `prowlarr.jamaguchi.xyz`; Gluetun sidecar |
 | qBittorrent | `qbittorrent` | `qbittorrent.jamaguchi.xyz`; Gluetun sidecar |
-| Radarr | `radarr` | `radarr.jamaguchi.xyz`; Gluetun sidecar |
-| Sonarr | `sonarr` | `sonarr.jamaguchi.xyz` |
-| Transmission | `transmission` | `transmission.jamaguchi.xyz`; Gluetun sidecar |
+
+Homarr, Sonarr, Prowlarr, Transmission and Radarr run privately in Docker.
+Their Kubernetes manifests, namespaces and public tunnel routes have been removed.
+See [Docker media services](docs/docker-media-services.md) for paths, ports and operations.
 
 Postgres overlays are wired for:
 
@@ -114,6 +117,7 @@ flux reconcile kustomization monitoring -n flux-system
 
 | Topic | Doc |
 | --- | --- |
+| Docker media services and private dashboard | [Runbook](docs/docker-media-services.md) |
 | Current operations baseline | `docs/operations-baseline-2026-06-01.md` |
 | Readiness check design | `docs/operations-readiness-check.md` |
 | Backup and restore | `docs/postgres-backup-restore.md` |
