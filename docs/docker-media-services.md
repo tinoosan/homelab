@@ -66,6 +66,16 @@ use `create_host_path: false` to avoid silently creating missing directories.
 
 ## VPN and service connections
 
+Homarr joins the `arr_default` Docker network so its server-side integrations
+can reach Sonarr, Radarr and Prowlarr through `gluetun` on ports 8989, 7878 and
+9696. Their API keys remain encrypted in Homarr's database. The dashboard links
+each integration to its existing browser-facing app tile and uses them in the
+calendar, missing-media and indexer widgets.
+
+The Gluetun integration uses the control server on port 8000. Its
+`gluetun-auth/config.toml` role permits only the four GET routes required by
+Homarr's VPN widget. VPN-control PUT routes remain unavailable to Homarr.
+
 Sonarr, Radarr, Prowlarr, Transmission and FlareSolverr share Gluetun's network
 namespace. They have no independent Docker network connection. Gluetun 3.41.3
 uses NordVPN OpenVPN at `nl912.nordvpn.com` in the Netherlands. Its firewall
