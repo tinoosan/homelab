@@ -14,9 +14,7 @@ This chapter uses the configuration in `~/services/n8n/compose.yaml` to explain 
 
 The private HTTPS route and configuration are established. Owner-account completion and a successful workflow are separate checks, not implied by a reachable page. If owner setup appears, complete it yourself before using n8n.
 
-![Private request path from your browser to n8n](diagrams/n8n-network.png)
-
-[Open the editable Excalidraw source](diagrams/excalidraw/n8n-network.excalidraw).
+![Private request path from your browser to n8n](diagrams/n8n-network.svg)
 
 Tailscale Serve accepts HTTPS on port 8443 and forwards HTTP to host loopback port 5678. Docker maps that port to n8n. `N8N_PROTOCOL=https` describes the external URL; it does not make the container serve TLS.
 
@@ -134,9 +132,7 @@ These settings do not disable authentication or secure cookies. Do not expose se
 
 ### `data:/home/node/.n8n`
 
-![Container replacement retains the separately managed n8n volume](diagrams/container-volume.png)
-
-[Open the editable Excalidraw source](diagrams/excalidraw/container-volume.excalidraw).
+![Container replacement retains the separately managed n8n volume](diagrams/container-volume.svg)
 
 `data` names the volume; `/home/node/.n8n` is its mount point inside the container. The image supplies the application. The volume holds data that must outlive that application instance.
 

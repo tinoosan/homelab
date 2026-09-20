@@ -9,9 +9,7 @@ Use Excalidraw to sketch a system while working out how it fits together. Use dr
 | Excalidraw | Sketch the route from your laptop through Tailscale to a container. | `.excalidraw`, a JSON drawing file. |
 | draw.io | Maintain a network diagram with named ports, boundaries and aligned components. | `.drawio`, the editable diagram file. |
 
-![Save editable drawings from the browser to a separately backed-up folder](diagrams/drawing-files.png)
-
-[Open the editable Excalidraw source](diagrams/excalidraw/drawing-files.excalidraw).
+![Save editable drawings from the browser to a separately backed-up folder](diagrams/drawing-files.svg)
 
 A browser session is a working copy. Save an editable file, copy it to separate storage, then reopen it to check that the drawing survived. Export SVG or PNG for readers who only need to view it.
 
