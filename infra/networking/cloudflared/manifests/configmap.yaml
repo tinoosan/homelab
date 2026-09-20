@@ -26,10 +26,6 @@ data:
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       - hostname: excalidraw.jamaguchi.xyz
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-      - hostname: sonarr.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-      - hostname: prowlarr.jamaguchi.xyz
-        service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       - hostname: radarr.jamaguchi.xyz
         service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
       - hostname: qbittorrent.jamaguchi.xyz
