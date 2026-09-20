@@ -18,7 +18,7 @@ GitOps, storage, ingress, observability, and operational runbooks.
   - Ingress VIP: `192.168.0.110`
 - Storage: Longhorn
 - Public tunnel: Cloudflared routes selected public hostnames to ingress-nginx
-- Observability: Prometheus and Grafana in Docker; Kubernetes metrics-server remains
+- Observability: Kubernetes metrics-server
 - Identity: Keycloak with split public and admin hostnames
 
 ## Inventory
@@ -46,7 +46,7 @@ Kubernetes applications:
 | Plex | `default` | Host/device dependent; no ingress |
 | qBittorrent | `qbittorrent` | `qbittorrent.jamaguchi.xyz`; Gluetun sidecar |
 
-Homarr, Sonarr, Prowlarr, Transmission, Radarr, Prometheus and Grafana run privately in Docker.
+Homarr, Sonarr, Prowlarr, Transmission and Radarr run privately in Docker.
 Their Kubernetes manifests, namespaces and public tunnel routes have been removed.
 See [Docker media services](docs/docker-media-services.md) for paths, ports and operations.
 
@@ -119,7 +119,6 @@ flux reconcile kustomization apps -n flux-system
 | --- | --- |
 | Learn how the homelab works | [Homelab Handbook](docs/learning/README.md) |
 | Docker media services and private dashboard | [Runbook](docs/docker-media-services.md) |
-| Docker monitoring | [Prometheus and Grafana](docs/learning/monitoring.md) |
 | Current operations baseline | `docs/operations-baseline-2026-06-01.md` |
 | Readiness check design | `docs/operations-readiness-check.md` |
 | Backup and restore | `docs/postgres-backup-restore.md` |

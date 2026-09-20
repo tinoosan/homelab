@@ -10,7 +10,6 @@ This is a reference handbook, not an activity log. Chapters explain concepts thr
 - [How the private media stack works](media-stack.md): follow a request through Tailscale, Gluetun, the Arr applications and Transmission, then learn how storage and the VPN kill switch fit together.
 - [Excalidraw and draw.io](drawing-apps.md): choose an editor, understand where drawings live, and save recoverable files.
 - [How private PDF processing works](stirling-pdf.md): follow a document through Tailscale and Docker, then learn which data persists and how to diagnose failures.
-- [How monitoring works](monitoring.md): learn how exporters, Prometheus and Grafana turn host and container measurements into useful history.
 - [Homelab overview](../../README.md): the existing repository structure and Kubernetes architecture.
 
 ## Chapter structure
