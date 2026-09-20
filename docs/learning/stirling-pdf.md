@@ -22,6 +22,19 @@ Binding Docker to `127.0.0.1` matters. It keeps port 8084 off the LAN while stil
 letting the local Tailscale process reach it. Stirling PDF also requires its own
 login, so a tailnet connection alone does not grant access to document tools.
 
+Executor reaches the same service through its MCP endpoint at `/mcp`. That path
+uses a per-user API key in the `X-API-KEY` header. Executor stores the credential
+encrypted and exposes eight grouped Stirling tools to MCP clients. An anonymous
+MCP request is rejected even from inside the tailnet.
+
+```text
+MCP client -> Executor :8446/mcp -> Stirling :8453/mcp
+                                      X-API-KEY
+```
+
+The MCP client first proves it may use Executor. Executor then proves it may use
+Stirling. The browser login still protects the interactive Stirling interface.
+
 ## Read the Compose file
 
 The live configuration is `~/services/stirling-pdf/compose.yaml`. The image uses
@@ -48,6 +61,11 @@ route keeps the editor reachable from authorised devices without publishing an
 internet endpoint. The application login adds another boundary for devices on
 the tailnet. Disabling metrics and the survey also removes two features this
 private single-host deployment does not need.
+
+`MCP_ENABLED=true` turns on the automation endpoint. `MCP_AUTH_MODE=apikey`
+requires a Stirling user API key. The current key is kept in Executor's private
+service directory and must never be copied into this handbook or the Compose
+file.
 
 ## Operate the service
 
@@ -100,11 +118,16 @@ or the client device's tailnet connection. If one PDF operation fails while the
 status endpoint works, inspect the container logs and test a small non-sensitive
 file to separate an application problem from a malformed or encrypted document.
 
+For automation failures, check the connection in Executor as well. A healthy
+Stirling container proves the server is running; a healthy Executor connection
+also proves that the stored key can initialize an MCP session and discover tools.
+
 ## Check your understanding
 
 - Why does binding to `127.0.0.1` still permit access through Tailscale Serve?
 - Which directories must survive container replacement?
 - Why is a successful health check weaker evidence than a completed PDF edit?
+- Why do the Executor and Stirling authentication checks protect different hops?
 - Where should the finished document live after processing?
 
 Further reading: [official Docker installation](https://docs.stirlingpdf.com/Installation/Docker%20Install/).
