@@ -15,7 +15,9 @@ pieces are connected this way.
 
 ## Follow one request
 
-![The private media stack and its shared VPN boundary](diagrams/media-stack.svg)
+![The private media stack and its shared VPN boundary](diagrams/media-stack.png)
+
+[Open the editable Excalidraw source](diagrams/excalidraw/media-stack.excalidraw).
 
 Opening Radarr does not send your browser through the commercial VPN. Your
 browser reaches Tailscale Serve over the tailnet. Tailscale terminates HTTPS on
