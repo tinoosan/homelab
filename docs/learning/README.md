@@ -9,6 +9,7 @@ This is a reference handbook, not an activity log. Chapters explain concepts thr
 - [Docker, Compose and n8n](docker-and-n8n.md): understand an application deployment from its configuration, including image versions, networking and persistent storage.
 - [How the private media stack works](media-stack.md): follow a request through Tailscale, Gluetun, the Arr applications and Transmission, then learn how storage and the VPN kill switch fit together.
 - [Excalidraw and draw.io](drawing-apps.md): choose an editor, understand where drawings live, and save recoverable files.
+- [How private PDF processing works](stirling-pdf.md): follow a document through Tailscale and Docker, then learn which data persists and how to diagnose failures.
 - [Homelab overview](../../README.md): the existing repository structure and Kubernetes architecture.
 
 ## Chapter structure
