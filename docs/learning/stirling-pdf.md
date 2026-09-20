@@ -19,8 +19,8 @@ loopback port to Stirling PDF on container port 8080.
 | 3 | Docker port 8084 to container port 8080 | Deliver the request to Stirling PDF |
 
 Binding Docker to `127.0.0.1` matters. It keeps port 8084 off the LAN while still
-letting the local Tailscale process reach it. The application login is disabled,
-so membership of the tailnet is the access control for this instance.
+letting the local Tailscale process reach it. Stirling PDF also requires its own
+login, so a tailnet connection alone does not grant access to document tools.
 
 ## Read the Compose file
 
@@ -45,8 +45,9 @@ long-term storage in Nextcloud or another managed location.
 
 PDFs often contain names, addresses, signatures and account details. A tailnet
 route keeps the editor reachable from authorised devices without publishing an
-internet endpoint. Disabling metrics and the survey also removes two features
-this private single-host deployment does not need.
+internet endpoint. The application login adds another boundary for devices on
+the tailnet. Disabling metrics and the survey also removes two features this
+private single-host deployment does not need.
 
 ## Operate the service
 
@@ -107,4 +108,3 @@ file to separate an application problem from a malformed or encrypted document.
 - Where should the finished document live after processing?
 
 Further reading: [official Docker installation](https://docs.stirlingpdf.com/Installation/Docker%20Install/).
-
