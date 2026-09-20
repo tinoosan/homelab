@@ -40,7 +40,6 @@ Kubernetes applications:
 | Excalidraw | `tools` | `excalidraw.jamaguchi.xyz` |
 | IT Tools | `tools` | `tools.jamaguchi.xyz`; ingress-only, not routed by Cloudflared |
 | Ledger | `ledger-dev` | `ledger.dev.jamaguchi.xyz` |
-| Metabase | `metabase` | `metabase.jamaguchi.xyz` |
 | n8n | `n8n` | `n8n.jamaguchi.xyz`; Gluetun sidecar |
 | pgAdmin | `tools` | `pgadmin.jamaguchi.xyz` |
 | Plex | `default` | Host/device dependent; no ingress |
@@ -54,10 +53,12 @@ Postgres overlays are wired for:
 
 - `keycloak`
 - `ledger-dev`
-- `metabase`
 
 Each has a namespace-local backup CronJob and restore smoke-test coverage in
 `docs/postgres-backup-restore.md`.
+
+Metabase was removed on 2026-09-20, including its dedicated Postgres instance,
+backup jobs, storage and public tunnel route.
 
 ## DNS and Access
 

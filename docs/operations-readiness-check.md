@@ -59,7 +59,7 @@ The live mode uses the current `kubectl` context and, when installed, the
   `:latest` is treated as a failure.
 - Built Deployment and StatefulSet containers without `resources.requests` are
   reported as warnings.
-- Postgres backup CronJobs exist for `keycloak`, `ledger-dev`, and `metabase`
+- Postgres backup CronJobs exist for `keycloak` and `ledger-dev`
   and are included by their overlays.
 - Postgres backup CronJobs include a schedule, a PVC or object-store backup
   target, and successful/failed job history limits.

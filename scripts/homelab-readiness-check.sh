@@ -372,7 +372,7 @@ check_workload_hygiene() {
 }
 
 check_backup_posture() {
-  local overlays=(keycloak ledger-dev metabase)
+  local overlays=(keycloak ledger-dev)
 
   info "Checking backup and restore posture"
   for overlay in "${overlays[@]}"; do

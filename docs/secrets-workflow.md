@@ -25,7 +25,6 @@ decrypted by Flux**.
 | --- | --- | --- | --- |
 | `pg-secret` | `keycloak` | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | Keycloak Postgres and backup CronJob |
 | `pg-secret` | `ledger-dev` | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | Ledger Postgres and backup CronJob |
-| `pg-secret` | `metabase` | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | Metabase Postgres and backup CronJob |
 | `cloudflared-secret` | `networking` | `TUNNEL_TOKEN` | Cloudflared tunnel |
 | `vpn-secret` | app namespaces using Gluetun | Provider-specific Gluetun keys | Gluetun sidecars |
 | `grafana-admin` | `monitoring` | `admin-user`, `admin-password` | Grafana |

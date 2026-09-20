@@ -1,12 +1,14 @@
 # Postgres Backup and Restore
 
+Metabase was retired on 2026-09-20, including its dedicated database and backup
+volumes. Any dated restore results below are historical evidence.
+
 ## Backup Coverage
 
 The repo defines daily `postgres-backup` CronJobs for:
 
 - `keycloak/postgres`, writing to `keycloak/postgres-backups`
 - `ledger-dev/postgres`, writing to `ledger-dev/postgres-backups`
-- `metabase/postgres`, writing to `metabase/postgres-backups`
 
 Each job uses `postgres:16-alpine`, reads `POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB` from `pg-secret`, runs `pg_dump -Fc`, and removes dumps older than 14 days from the namespace-local backup PVC.
 
@@ -15,7 +17,6 @@ Each job uses `postgres:16-alpine`, reads `POSTGRES_USER`, `POSTGRES_PASSWORD`, 
 ```sh
 kubectl -n keycloak get cronjob postgres-backup
 kubectl -n ledger-dev get cronjob postgres-backup
-kubectl -n metabase get cronjob postgres-backup
 kubectl -n keycloak create job --from=cronjob/postgres-backup postgres-backup-manual
 kubectl -n keycloak logs job/postgres-backup-manual
 ```
@@ -46,7 +47,6 @@ Set `NS` and `APP_BACKUP_DIR` to one of:
 | --- | --- |
 | `keycloak` | `keycloak` |
 | `ledger-dev` | `ledger-dev` |
-| `metabase` | `metabase` |
 
 ```sh
 NS=keycloak

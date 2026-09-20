@@ -17,8 +17,6 @@ ingress:
       noTLSVerify: true
   - hostname: grafana.jamaguchi.xyz
     service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: metabase.jamaguchi.xyz
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
   - hostname: excalidraw.jamaguchi.xyz
     service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
   - hostname: qbittorrent.jamaguchi.xyz
