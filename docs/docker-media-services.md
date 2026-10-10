@@ -1,7 +1,7 @@
 # Docker media services on Mugiwara
 
-Updated 2026-09-20. Docker is the authoritative state for Homarr, Sonarr,
-Prowlarr, Radarr and Transmission. Their Kubernetes manifests, namespaces,
+Updated 2026-10-10. Docker is the authoritative state for Homarr, Sonarr,
+Prowlarr, Radarr, Transmission and Plex. Their Kubernetes manifests, namespaces,
 Longhorn volumes and public tunnel routes are retired. No migration backups
 or parallel rollback installations are retained. Existing application backup
 schedules are separate from migration copies and remain unchanged.
@@ -18,6 +18,7 @@ Serve, not Funnel. Mugiwara must remain running and connected.
 | Prowlarr | https://mugiwara.tail9aaa00.ts.net:8450/ | 9696 | 2.5.2.5491 |
 | Transmission | https://mugiwara.tail9aaa00.ts.net:8451/ | 9091 | 4.1.1 |
 | Radarr | https://mugiwara.tail9aaa00.ts.net:8452/ | 7878 | 6.4.4.10685 |
+| Plex | https://mugiwara.tail9aaa00.ts.net:8454/ | 32400 | 1.43.3.10896 |
 
 Homarr links to each service. Existing Homarr and Arr application accounts
 are retained. Transmission retains its existing unauthenticated RPC setting;
@@ -29,6 +30,14 @@ The live Compose files on Mugiwara are:
 
 - `/home/tinoosan/services/arr/compose.yaml` for the media services.
 - `/home/tinoosan/services/homarr/compose.yaml` for the dashboard.
+- `/home/tinoosan/services/plex/compose.yaml` for Plex.
+
+Plex preserves its existing server identity, accounts, watch history and
+metadata in `/home/tinoosan/services/plex/config`. It reads media from
+`/mnt/gdrive/Videos` at `/media` and uses `/dev/dri` for hardware transcoding.
+Temporary transcoding files live in `/home/tinoosan/services/plex/transcode`.
+Host networking preserves LAN discovery and `http://192.168.0.90:32400`.
+See the [Plex service runbook](/home/tinoosan/services/plex/README.md).
 
 Images are pinned by digest. Live data is outside this Git repository:
 
@@ -41,6 +50,7 @@ Images are pinned by digest. Live data is outside this Git repository:
 | `gluetun/` | VPN runtime data |
 | `secrets/openvpn_user`, `secrets/openvpn_password` | Existing NordVPN service credentials, Docker secrets |
 | `resolv.conf` | Resolver at `127.0.0.1` in the shared VPN namespace |
+| `guard.py` | Removes torrents whose real payload contains executable files |
 
 Keep the secrets private. The secret files have mode 600 and their directory
 has mode 700. Do not commit application databases, API keys or credentials.
@@ -76,9 +86,9 @@ The Gluetun integration uses the control server on port 8000. Its
 `gluetun-auth/config.toml` role permits only the four GET routes required by
 Homarr's VPN widget. VPN-control PUT routes remain unavailable to Homarr.
 
-Sonarr, Radarr, Prowlarr, Transmission and FlareSolverr share Gluetun's network
+Sonarr, Radarr, Prowlarr, Transmission, the media guard and FlareSolverr share Gluetun's network
 namespace. They have no independent Docker network connection. Gluetun 3.41.3
-uses NordVPN OpenVPN at `nl912.nordvpn.com` in the Netherlands. Its firewall
+uses NordVPN OpenVPN over UDP with automatic Netherlands server selection. Its firewall
 is enabled, with no outbound LAN or Kubernetes subnet exceptions. UI ports
 7878, 8989, 9696 and 9091 are published only on host loopback.
 
@@ -90,8 +100,8 @@ the new gateway address only. See the [Radarr security settings](https://github.
 
 DNS resolves through Gluetun at `127.0.0.1`, with DNS over TLS upstream.
 Applications wait for VPN health on startup. Gluetun handles tunnel reconnects.
-If the pinned VPN endpoint is retired, change `SERVER_HOSTNAMES` and verify
-VPN health and egress before resuming normal use.
+If Nord endpoints become stale, refresh `gluetun/servers.json`, recreate Gluetun
+and its dependent containers, then verify VPN health and egress.
 
 Inside the shared namespace:
 
@@ -107,6 +117,13 @@ indexers passed connection tests: Nyaa.si, showRSS, The Pirate Bay,
 TorrentDownload and YTS. Radarr receives the four movie-compatible indexers.
 EZTV is disabled because it returned HTTP 451 through FlareSolverr.
 TorrentGalaxyClone was removed because its definition was unavailable.
+
+`media-guard` polls Transmission every 15 seconds and checks the actual file
+list after torrent metadata arrives. If a torrent contains an executable
+payload, it removes the download through Sonarr or Radarr, blocklists that
+release and permits an automatic replacement search. This protects against
+public-indexer results whose display title hides the real `.exe` suffix while
+retaining legitimate TorrentDownload results.
 
 ## Operations
 

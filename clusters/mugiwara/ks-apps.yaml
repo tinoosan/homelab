@@ -5,8 +5,6 @@ metadata:
   namespace: flux-system
 spec:
   timeout: 10m0s
-  dependsOn:
-    - name: monitoring
   interval: 5m
   path: ./clusters/mugiwara/apps
   prune: true
