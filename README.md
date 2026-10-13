@@ -17,7 +17,7 @@ GitOps, storage, ingress, observability, and operational runbooks.
 - Networking: MetalLB L2 plus ingress-nginx
   - Ingress VIP: `192.168.0.110`
 - Storage: Longhorn
-- Public tunnel: Cloudflared routes selected public hostnames to ingress-nginx
+- Public tunnel: Docker Cloudflared routes selected public hostnames to the ingress VIP
 - Observability: Kubernetes metrics-server
 - Identity: Keycloak with split public and admin hostnames
 
@@ -30,7 +30,7 @@ Core infrastructure:
 | Cluster wiring | `clusters/mugiwara/` |
 | Flux system | `flux-system/` |
 | Ingress / MetalLB / storage | `infra/` |
-| Cloudflared public routing | `infra/networking/cloudflared/` |
+| Cloudflared public routing | `/home/tinoosan/services/cloudflared/` |
 | Keycloak identity | `infra/keycloak/` |
 
 Kubernetes applications:
@@ -80,7 +80,7 @@ Useful internal DNS examples:
 Public access is routed through Cloudflare Tunnel:
 
 ```text
-Cloudflare -> cloudflared -> ingress-nginx -> Kubernetes Service
+Cloudflare -> Docker cloudflared -> ingress VIP -> Kubernetes Service
 ```
 
 Public exposure details and required auth assumptions are tracked in

@@ -9,7 +9,6 @@ resources:
   - metallb/base
   - metrics-server
   - keycloak/base
-  - networking/cloudflared
 patches:
   - path: ingress-nginx/delete-admission-create-job.yaml
   - path: ingress-nginx/delete-admission-patch-job.yaml

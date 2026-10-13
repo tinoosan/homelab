@@ -2,6 +2,12 @@
 
 Original audit: 2026-06-01
 
+Update 2026-10-13: Cloudflared now runs from
+`/home/tinoosan/services/cloudflared` in Docker. Its local config points at
+the ingress VIP `192.168.0.110`. The Kubernetes Deployment, ConfigMap and
+namespace were retired. The inventory below is historical; check the Docker
+config and live cluster for current routes and workloads.
+
 Update 2026-09-20: Homarr, Sonarr, Prowlarr, Transmission and Radarr now run
 privately in Docker. Their Kubernetes ingress and Cloudflared routes were removed.
 Use [the Docker runbook](docker-media-services.md) for their current access details.
