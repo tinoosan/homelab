@@ -2,11 +2,13 @@
 
 Original audit: 2026-06-01
 
-Update 2026-10-13: Cloudflared now runs from
-`/home/tinoosan/services/cloudflared` in Docker. Its local config points at
-the ingress VIP `192.168.0.110`. The Kubernetes Deployment, ConfigMap and
-namespace were retired. The inventory below is historical; check the Docker
-config and live cluster for current routes and workloads.
+Update 2026-10-13: The Cloudflare `homelab` tunnel was deleted after its Docker
+connector was stopped. Its Docker service, local token, routing config and
+old tunnel credential were removed. The Kubernetes Deployment and ConfigMap
+were removed earlier. Public DNS records may still point at the deleted tunnel;
+they no longer reach the homelab and should be cleaned up in Cloudflare DNS.
+The inventory below records the original audit and is not the current exposure
+state. Use Tailscale or LAN addresses for private access.
 
 Update 2026-09-20: Homarr, Sonarr, Prowlarr, Transmission and Radarr now run
 privately in Docker. Their Kubernetes ingress and Cloudflared routes were removed.

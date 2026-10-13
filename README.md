@@ -17,7 +17,7 @@ GitOps, storage, ingress, observability, and operational runbooks.
 - Networking: MetalLB L2 plus ingress-nginx
   - Ingress VIP: `192.168.0.110`
 - Storage: Longhorn
-- Public tunnel: Docker Cloudflared routes selected public hostnames to the ingress VIP
+- Public tunnel: disabled; services are reached privately over Tailscale or LAN
 - Observability: Kubernetes metrics-server
 - Identity: Keycloak with split public and admin hostnames
 
@@ -30,7 +30,6 @@ Core infrastructure:
 | Cluster wiring | `clusters/mugiwara/` |
 | Flux system | `flux-system/` |
 | Ingress / MetalLB / storage | `infra/` |
-| Cloudflared public routing | `/home/tinoosan/services/cloudflared/` |
 | Keycloak identity | `infra/keycloak/` |
 
 Kubernetes applications:
@@ -77,13 +76,8 @@ Useful internal DNS examples:
 192.168.0.110 pgadmin.jamaguchi.xyz
 ```
 
-Public access is routed through Cloudflare Tunnel:
-
-```text
-Cloudflare -> Docker cloudflared -> ingress VIP -> Kubernetes Service
-```
-
-Public exposure details and required auth assumptions are tracked in
+The Cloudflare Tunnel was deleted. Public DNS records may still exist, but
+there is no tunnel to reach these services. Exposure history is in
 `docs/public-ingress-exposure.md`.
 
 ## GitOps Workflow
